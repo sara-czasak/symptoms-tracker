@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from menu_page import MenuFrame
+from translator import Translator
 
 
 class App(ctk.CTk):
@@ -10,16 +11,23 @@ class App(ctk.CTk):
         self.title('Symptoms Tracker')
         self.resizable(width=False, height=False)
 
+        # HELPERS
+        self.translator = Translator()
+        self.translator.set_lang('English')
+
         # PAGES
         self.menu_page = MenuFrame(self)
 
 
-        def show_menu(self):
-            self.menu_frame.pack(padx=15, pady=15, fill="both", expand=True)
+        self.show_menu()
 
 
-        def hide_menu(self):
-            self.menu_frame.pack_forget()
+    def show_menu(self):
+        self.menu_page.pack(padx=15, pady=15, fill="both", expand=True)
+
+
+    def hide_menu(self):
+            self.menu_page.pack_forget()
 
 
 
