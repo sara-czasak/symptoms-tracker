@@ -4,6 +4,7 @@ langs = [
             # PAGE TITLES
             "menu_page_title": "~ Personal Symptom ~\n~ Tracker ~",
             "settings_title": "~ SETTINGS ~",
+            "add_symptom_title": "~ ADD SYMPTOM ~",
 
             # MENU WIDGETS
             "add_log": "NEW LOG",

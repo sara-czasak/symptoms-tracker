@@ -65,6 +65,7 @@ class MenuFrame(ctk.CTkFrame):
             self,
             text=self.parent.translator.dictionary["add_symptoms_btn"],
             font=self.parent.button_font,
+            command=self.parent.show_add_symptom,
         )
         self.add_symptoms_btn.pack(padx=5, pady=5)
 

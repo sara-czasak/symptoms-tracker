@@ -28,3 +28,11 @@ language TEXT NOT NULL,
 theme TEXT NOT NULL
 )
 """
+
+
+CREATE_SYMPTOMS_TABLE = """
+CREATE TABLE IF NOT EXISTS symptoms (
+id INTEGER PRIMARY KEY,
+symptom TEXT NOT NULL,
+)
+"""

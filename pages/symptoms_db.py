@@ -1,6 +1,6 @@
 import sqlite3
 from sqlite3 import IntegrityError, OperationalError
-from schema import CREATE_LOGS_TABLE, CREATE_LOG_DETAILS_TABLE, CREATE_USER_PREFERENCES_TABLE
+from schema import CREATE_LOGS_TABLE, CREATE_LOG_DETAILS_TABLE, CREATE_USER_PREFERENCES_TABLE, CREATE_SYMPTOMS_TABLE
 
 
 class SymptomsDB:
@@ -21,8 +21,24 @@ class SymptomsDB:
             cursor.execute(CREATE_LOGS_TABLE)
             cursor.execute(CREATE_LOG_DETAILS_TABLE)
             cursor.execute(CREATE_USER_PREFERENCES_TABLE)
+            cursor.execute(CREATE_SYMPTOMS_TABLE)
             conn.commit()
         except OperationalError:
             print("Database creation failed")
+        finally:
+            conn.close()
+
+
+    def add_symptom(self, symptom):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("INSERT INTO symptoms (symptom) VALUES (?)",
+                           (symptom,))
+            conn.commit()
+        except IntegrityError:
+            print("Symptom already exists")
+        except OperationalError:
+            print("Database error")
         finally:
             conn.close()

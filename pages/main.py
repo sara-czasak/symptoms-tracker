@@ -2,6 +2,7 @@ import customtkinter as ctk
 from menu_page import MenuFrame
 from settings_page import SettingsFrame
 from translator import Translator
+from add_symptom_page import AddSymptomFrame
 from PIL import Image
 
 
@@ -30,6 +31,7 @@ class App(ctk.CTk):
         # PAGES
         self.menu_page = MenuFrame(self)
         self.settings_page = SettingsFrame(self)
+        self.add_symptom_page = AddSymptomFrame(self)
 
         # CHECK IF BUTTONS SHOULD BE ENABLED
         self.menu_page.update_button_states()
@@ -40,6 +42,7 @@ class App(ctk.CTk):
 
     def show_menu(self):
         self.settings_page.pack_forget()
+        self.add_symptom_page.pack_forget()
         self.menu_page.pack(padx=15, pady=15, fill="both", expand=True)
 
 
@@ -54,6 +57,15 @@ class App(ctk.CTk):
 
     def hide_settings(self):
         self.settings_page.pack_forget()
+
+
+    def show_add_symptom(self):
+        self.menu_page.pack_forget()
+        self.add_symptom_page.pack(padx=15, pady=15, fill="both", expand=True)
+
+
+    def hide_add_symptom(self):
+        self.add_symptom_page.pack_forget()
 
 
 
