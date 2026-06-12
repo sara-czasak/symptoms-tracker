@@ -1,6 +1,8 @@
 import customtkinter as ctk
 from menu_page import MenuFrame
+from settings_page import SettingsFrame
 from translator import Translator
+from PIL import Image
 
 
 class App(ctk.CTk):
@@ -15,14 +17,19 @@ class App(ctk.CTk):
         self.translator = Translator()
         self.translator.set_lang('English')
 
+        # ICONS
+        self.back_img = ctk.CTkImage(light_image=Image.open(r'img/go_back.png'))
+
         # THEME AND FONT
         self.theme = ctk.set_appearance_mode('light')
         self.title_font = ("Helvetica", 25)
         self.button_font = ("Helvetica", 15)
         self.hint_font = ("Helvetica", 12)
+        self.back_btn_font = ("Helvetica", 25)
 
         # PAGES
         self.menu_page = MenuFrame(self)
+        self.settings_page = SettingsFrame(self)
 
         # CHECK IF BUTTONS SHOULD BE ENABLED
         self.menu_page.update_button_states()
@@ -32,11 +39,21 @@ class App(ctk.CTk):
 
 
     def show_menu(self):
+        self.settings_page.pack_forget()
         self.menu_page.pack(padx=15, pady=15, fill="both", expand=True)
 
 
     def hide_menu(self):
             self.menu_page.pack_forget()
+
+
+    def show_settings(self):
+        self.hide_menu()
+        self.settings_page.pack(padx=15, pady=15, fill="both", expand=True)
+
+
+    def hide_settings(self):
+        self.settings_page.pack_forget()
 
 
 

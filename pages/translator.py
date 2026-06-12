@@ -3,6 +3,7 @@ langs = [
         "English": {
             # PAGE TITLES
             "menu_page_title": "~ Personal Symptom ~\n~ Tracker ~",
+            "settings_title": "~ SETTINGS ~",
 
             # MENU WIDGETS
             "add_log": "NEW LOG",
@@ -12,7 +13,12 @@ langs = [
             "about_btn": "ABOUT",
             "add_symptoms_btn": "ADD SYMPTOMS\nTO TRACK",
             "exit_btn": "EXIT",
-            "menu_page_hint": "Please make sure to:\n~ Add symptoms to track to be able to add entry\n~ Add an entry to be able to view insights and see all entries"
+            "menu_page_hint": "Please make sure to:\n~ Add symptoms to track to be able to add entry\n~ Add an entry to be able to view insights and see all entries",
+
+            # SETTINGS WIDGETS
+            "export_btn": "EXPORT DATA",
+            "lang_btn": "LANGUAGES",
+            "theme_btn": "THEMES",
         }
     }
 ]

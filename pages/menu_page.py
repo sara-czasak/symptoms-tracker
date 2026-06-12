@@ -20,6 +20,7 @@ class MenuFrame(ctk.CTkFrame):
         # FLAGS
         self.has_data = False
 
+        # BUILD PAGE
         self.layout()
 
 
@@ -71,6 +72,7 @@ class MenuFrame(ctk.CTkFrame):
             self,
             text=self.parent.translator.dictionary["settings_btn"],
             font=self.parent.button_font,
+            command=self.parent.show_settings,
         )
         self.settings_btn.pack(padx=5, pady=5)
 
