@@ -19,6 +19,7 @@ class App(ctk.CTk):
         self.theme = ctk.set_appearance_mode('light')
         self.title_font = ("Helvetica", 25)
         self.button_font = ("Helvetica", 15)
+        self.hint_font = ("Helvetica", 12)
 
         # PAGES
         self.menu_page = MenuFrame(self)

@@ -8,6 +8,7 @@ class MenuFrame(ctk.CTkFrame):
 
         # WIDGETS
         self.page_title = None
+        self.hint = None
         self.add_log_btn = None
         self.analysis_btn = None
         self.view_entries_btn = None
@@ -28,7 +29,15 @@ class MenuFrame(ctk.CTkFrame):
             text=self.parent.translator.dictionary["menu_page_title"],
             font=self.parent.title_font
         )
-        self.page_title.pack(padx=5, pady=30)
+        self.page_title.pack(padx=5, pady=15)
+
+        if not self.has_data:
+            self.hint = ctk.CTkLabel(
+                self,
+                text=self.parent.translator.dictionary["menu_page_hint"],
+                font=self.parent.hint_font,
+            )
+            self.hint.pack(padx=5, pady=5)
 
         self.add_log_btn = ctk.CTkButton(
             self,
@@ -76,6 +85,7 @@ class MenuFrame(ctk.CTkFrame):
             self,
             text=self.parent.translator.dictionary["exit_btn"],
             font=self.parent.button_font,
+            command=self.parent.destroy,
         )
         self.exit_btn.pack(padx=5, pady=5)
 

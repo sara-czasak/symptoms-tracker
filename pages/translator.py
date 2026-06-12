@@ -11,7 +11,8 @@ langs = [
             "settings_btn": "SETTINGS",
             "about_btn": "ABOUT",
             "add_symptoms_btn": "ADD SYMPTOMS\nTO TRACK",
-            "exit_btn": "EXIT"
+            "exit_btn": "EXIT",
+            "menu_page_hint": "Please make sure to:\n~ Add symptoms to track to be able to add entry\n~ Add an entry to be able to view insights and see all entries"
         }
     }
 ]
