@@ -1,0 +1,28 @@
+import sqlite3
+from sqlite3 import IntegrityError, OperationalError
+from schema import CREATE_LOGS_TABLE, CREATE_LOG_DETAILS_TABLE, CREATE_USER_PREFERENCES_TABLE
+
+
+class SymptomsDB:
+    def __init__(self):
+        self.create_database()
+
+
+    def get_connection(self):
+        conn = sqlite3.connect('symptom_tracker.db')
+        conn.execute("PRAGMA foreign_keys = ON")
+        return conn
+
+
+    def create_database(self):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute(CREATE_LOGS_TABLE)
+            cursor.execute(CREATE_LOG_DETAILS_TABLE)
+            cursor.execute(CREATE_USER_PREFERENCES_TABLE)
+            conn.commit()
+        except OperationalError:
+            print("Database creation failed")
+        finally:
+            conn.close()
