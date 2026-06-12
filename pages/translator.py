@@ -14,12 +14,14 @@ langs = [
             "about_btn": "ABOUT",
             "add_symptoms_btn": "ADD SYMPTOMS\nTO TRACK",
             "exit_btn": "EXIT",
-            "menu_page_hint": "Please make sure to:\n~ Add symptoms to track to be able to add entry\n~ Add an entry to be able to view insights and see all entries",
+            "menu_page_symptom_hint": "Please make sure to add symptoms to track to be able to add entry",
+            "menu_page_entry_hint": "Please add a new log to view logs and analysis",
 
             # SETTINGS WIDGETS
             "export_btn": "EXPORT DATA",
             "lang_btn": "LANGUAGES",
             "theme_btn": "THEMES",
+            "see_symptoms": "VIEW SYMPTOMS",
 
             # ADD SYMPTOM WIDGETS
             "add_symptom_name": "Symptom name:",

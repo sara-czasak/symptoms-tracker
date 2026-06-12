@@ -42,3 +42,21 @@ class SymptomsDB:
             print("Database error")
         finally:
             conn.close()
+
+
+    def check_if_symptoms(self):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("SELECT * FROM symptoms")
+            symptoms = cursor.fetchall()
+            if len(symptoms) == 0:
+                return False
+            else:
+                return True
+        except IntegrityError:
+            print("Symptom already exists")
+        except OperationalError:
+            print("Database error")
+        finally:
+            conn.close()

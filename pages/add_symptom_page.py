@@ -97,11 +97,15 @@ class AddSymptomFrame(ctk.CTkFrame):
 
     def add_symptom(self):
         """Add a new symptom to the database"""
-        db = SymptomsDB()
-        try:
-            symptom_name = self.symptom_name_entry.get()
-            symptom_type = self.symptom_type_entry.get()
-            db.add_symptom(symptom_name, symptom_type)
-            self.reset_options()
-        except Exception as e:
-            print("Error: ", e)
+        if self.symptom_type_entry != "" and self.symptom_type_entry.get() != self.parent.translator.dictionary["choose"]:
+            db = SymptomsDB()
+            try:
+                symptom_name = self.symptom_name_entry.get()
+                symptom_type = self.symptom_type_entry.get()
+                db.add_symptom(symptom_name, symptom_type)
+                self.reset_options()
+                self.parent.has_symptoms = True
+            except Exception as e:
+                print("Error: ", e)
+        else:
+            print("Error: Need to add name and type")

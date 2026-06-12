@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from symptoms_db import SymptomsDB
 
 
 class MenuFrame(ctk.CTkFrame):
@@ -8,7 +9,8 @@ class MenuFrame(ctk.CTkFrame):
 
         # WIDGETS
         self.page_title = None
-        self.hint = None
+        self.hint_symptoms = None
+        self.hint_logs = None
         self.add_log_btn = None
         self.analysis_btn = None
         self.view_entries_btn = None
@@ -17,8 +19,6 @@ class MenuFrame(ctk.CTkFrame):
         self.add_symptoms_btn = None
         self.exit_btn = None
 
-        # FLAGS
-        self.has_data = False
 
         # BUILD PAGE
         self.layout()
@@ -33,13 +33,25 @@ class MenuFrame(ctk.CTkFrame):
         )
         self.page_title.pack(padx=5, pady=15)
 
-        if not self.has_data:
-            self.hint = ctk.CTkLabel(
+        if not self.parent.has_symptoms:
+            self.hint_symptoms = ctk.CTkLabel(
                 self,
-                text=self.parent.translator.dictionary["menu_page_hint"],
+                text=self.parent.translator.dictionary["menu_page_symptom_hint"],
                 font=self.parent.hint_font,
             )
-            self.hint.pack(padx=5, pady=5)
+            self.hint_symptoms.pack(padx=5, pady=1)
+        else:
+            self.hint_symptoms.pack_forget()
+
+        if not self.parent.has_logs:
+            self.hint_logs = ctk.CTkLabel(
+                self,
+                text=self.parent.translator.dictionary["menu_page_entry_hint"],
+                font=self.parent.hint_font,
+            )
+            self.hint_logs.pack(padx=5, pady=1)
+        else:
+            self.hint_logs.pack_forget()
 
         self.add_log_btn = ctk.CTkButton(
             self,
@@ -96,11 +108,19 @@ class MenuFrame(ctk.CTkFrame):
 
     def update_button_states(self):
         """Check if symptoms exist and enable/disable buttons"""
-        if self.has_data:
+        db = SymptomsDB()
+        try:
+            self.parent.has_symptoms = db.check_if_symptoms()
+        except Exception as e:
+            print("Error: ", e)
+        if self.parent.has_symptoms:
             self.add_log_btn.configure(state="normal")
+        else:
+            self.add_log_btn.configure(state="disabled")
+
+        if self.parent.has_logs:
             self.analysis_btn.configure(state="normal")
             self.view_entries_btn.configure(state="normal")
         else:
-            self.add_log_btn.configure(state="disabled")
             self.analysis_btn.configure(state="disabled")
             self.view_entries_btn.configure(state="disabled")

@@ -9,6 +9,7 @@ class SettingsFrame(ctk.CTkFrame):
         # WIDGETS
         self.page_title = None
         self.back_to_menu_btn = None
+        self.symptoms_list_btn = None
         self.export_btn = None
         self.lang_btn = None
         self.theme_btn = None
@@ -26,6 +27,13 @@ class SettingsFrame(ctk.CTkFrame):
             font=self.parent.title_font,
         )
         self.page_title.pack(padx=5, pady=40)
+
+        self.symptoms_list_btn = ctk.CTkButton(
+            self,
+            text=self.parent.translator.dictionary["see_symptoms"],
+            font=self.parent.button_font,
+        )
+        self.symptoms_list_btn.pack(padx=5, pady=5)
 
         self.back_to_menu_btn = ctk.CTkButton(
             self,
@@ -56,6 +64,7 @@ class SettingsFrame(ctk.CTkFrame):
             font=self.parent.button_font,
         )
         self.theme_btn.pack(padx=5, pady=5)
+
 
 
 

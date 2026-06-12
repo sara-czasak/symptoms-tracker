@@ -14,6 +14,10 @@ class App(ctk.CTk):
         self.title('Symptoms Tracker')
         self.resizable(width=False, height=False)
 
+        # FLAGS
+        self.has_symptoms = False
+        self.has_logs = False
+
         # HELPERS
         self.translator = Translator()
         self.translator.set_lang('English')
@@ -45,6 +49,7 @@ class App(ctk.CTk):
         """Show menu page and hide other pages"""
         self.hide_settings()
         self.hide_add_symptom()
+        self.menu_page.update_button_states()
         self.menu_page.pack(padx=15, pady=15, fill="both", expand=True)
 
 
@@ -73,6 +78,7 @@ class App(ctk.CTk):
     def hide_add_symptom(self):
         """hide add symptom page"""
         self.add_symptom_page.pack_forget()
+
 
 
 
