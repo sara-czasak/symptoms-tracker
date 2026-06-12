@@ -3,6 +3,13 @@ langs = [
         "English": {
             # PAGE TITLES
             "menu_page_title": "~ Personal Symptom ~\n~ Tracker ~",
+
+            # MENU WIDGETS
+            "add_log": "NEW LOG",
+            "analysis_btn": "INSIGHTS",
+            "view_entries_btn": "SEE ALL ENTRIES",
+            "settings_btn": "SETTINGS",
+            "about_btn": "ABOUT",
         }
     }
 ]

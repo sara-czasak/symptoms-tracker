@@ -14,8 +14,11 @@ class App(ctk.CTk):
         # HELPERS
         self.translator = Translator()
         self.translator.set_lang('English')
+
+        # THEME AND FONT
         self.theme = ctk.set_appearance_mode('light')
         self.title_font = ("Helvetica", 25)
+        self.button_font = ("Helvetica", 15)
 
         # PAGES
         self.menu_page = MenuFrame(self)
