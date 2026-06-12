@@ -25,6 +25,7 @@ class MenuFrame(ctk.CTkFrame):
 
 
     def layout(self):
+        """Build page layout"""
         self.page_title = ctk.CTkLabel(
             self,
             text=self.parent.translator.dictionary["menu_page_title"],
@@ -94,6 +95,7 @@ class MenuFrame(ctk.CTkFrame):
 
 
     def update_button_states(self):
+        """Check if symptoms exist and enable/disable buttons"""
         if self.has_data:
             self.add_log_btn.configure(state="normal")
             self.analysis_btn.configure(state="normal")

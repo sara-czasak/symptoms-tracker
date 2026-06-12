@@ -37,35 +37,41 @@ class App(ctk.CTk):
         # CHECK IF BUTTONS SHOULD BE ENABLED
         self.menu_page.update_button_states()
 
-
+        # SHOW MENU PAGE ON START
         self.show_menu()
 
 
     def show_menu(self):
-        self.settings_page.pack_forget()
-        self.add_symptom_page.pack_forget()
+        """Show menu page and hide other pages"""
+        self.hide_settings()
+        self.hide_add_symptom()
         self.menu_page.pack(padx=15, pady=15, fill="both", expand=True)
 
 
     def hide_menu(self):
-            self.menu_page.pack_forget()
+        """hide menu page"""
+        self.menu_page.pack_forget()
 
 
     def show_settings(self):
+        """Show settings page and hide menu page"""
         self.hide_menu()
         self.settings_page.pack(padx=15, pady=15, fill="both", expand=True)
 
 
     def hide_settings(self):
+        """hide settings page"""
         self.settings_page.pack_forget()
 
 
     def show_add_symptom(self):
+        """Show add symptom page and hide menu page"""
         self.menu_page.pack_forget()
         self.add_symptom_page.pack(padx=15, pady=15, fill="both", expand=True)
 
 
     def hide_add_symptom(self):
+        """hide add symptom page"""
         self.add_symptom_page.pack_forget()
 
 

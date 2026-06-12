@@ -19,6 +19,7 @@ class SettingsFrame(ctk.CTkFrame):
 
 
     def layout(self):
+        """Build page layout"""
         self.page_title = ctk.CTkLabel(
             self,
             text=self.parent.translator.dictionary["settings_title"],

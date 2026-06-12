@@ -44,11 +44,13 @@ class Translator:
 
 
     def set_lang(self, lang):
+        """Choose language"""
         self.lang = lang
         self.get_dictionary(self.lang)
 
 
     def get_dictionary(self, lang):
+        """Fetch translation from dictionary"""
         for i in langs:
             if lang in i:
                 self.dictionary = i[lang]

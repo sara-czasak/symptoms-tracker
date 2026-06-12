@@ -21,6 +21,7 @@ class AddSymptomFrame(ctk.CTkFrame):
 
 
     def layout(self):
+        """Build page layout"""
         self.page_title = ctk.CTkLabel(
             self,
             text=self.parent.translator.dictionary["add_symptom_title"],
@@ -81,11 +82,13 @@ class AddSymptomFrame(ctk.CTkFrame):
 
 
     def back_to_menu(self):
+        """Reset fields and go back to menu"""
         self.reset_options()
         self.parent.show_menu()
 
 
     def reset_options(self):
+        """Reset fields"""
         if self.symptom_type_entry is not None:
             self.symptom_type_entry.set(self.parent.translator.dictionary["choose"])
         if self.symptom_name_entry is not None:
@@ -93,6 +96,7 @@ class AddSymptomFrame(ctk.CTkFrame):
 
 
     def add_symptom(self):
+        """Add a new symptom to the database"""
         db = SymptomsDB()
         try:
             symptom_name = self.symptom_name_entry.get()
