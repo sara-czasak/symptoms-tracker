@@ -10,6 +10,8 @@ langs = [
             "view_entries_btn": "SEE ALL ENTRIES",
             "settings_btn": "SETTINGS",
             "about_btn": "ABOUT",
+            "add_symptoms_btn": "ADD SYMPTOMS\nTO TRACK",
+            "exit_btn": "EXIT"
         }
     }
 ]

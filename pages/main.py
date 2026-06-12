@@ -23,6 +23,9 @@ class App(ctk.CTk):
         # PAGES
         self.menu_page = MenuFrame(self)
 
+        # CHECK IF BUTTONS SHOULD BE ENABLED
+        self.menu_page.update_button_states()
+
 
         self.show_menu()
 
