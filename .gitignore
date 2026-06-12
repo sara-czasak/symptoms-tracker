@@ -1,0 +1,8 @@
+.venv
+.env
+.idea/
+*.db
+__pycache__/
+dist/
+build/
+*.spec
