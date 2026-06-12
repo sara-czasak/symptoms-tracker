@@ -29,12 +29,12 @@ class SymptomsDB:
             conn.close()
 
 
-    def add_symptom(self, symptom):
+    def add_symptom(self, symptom, type):
         conn = self.get_connection()
         cursor = conn.cursor()
         try:
-            cursor.execute("INSERT INTO symptoms (symptom) VALUES (?)",
-                           (symptom,))
+            cursor.execute("INSERT INTO symptoms (symptom, track_type) VALUES (?, ?)",
+                           (symptom, type))
             conn.commit()
         except IntegrityError:
             print("Symptom already exists")

@@ -20,6 +20,14 @@ langs = [
             "export_btn": "EXPORT DATA",
             "lang_btn": "LANGUAGES",
             "theme_btn": "THEMES",
+
+            # ADD SYMPTOM WIDGETS
+            "add_symptom_name": "Symptom name:",
+            "scale": "SCALE (0-5)",
+            "yes_no": "PRESENT/NOT PRESENT",
+            "choose": "SELECT OPTION",
+            "type": "How would you like to track?",
+            "add_symptom": "ADD SYMPTOM"
         }
     }
 ]

@@ -27,6 +27,7 @@ class App(ctk.CTk):
         self.button_font = ("Helvetica", 15)
         self.hint_font = ("Helvetica", 12)
         self.back_btn_font = ("Helvetica", 25)
+        self.label_font = ("Helvetica", 15)
 
         # PAGES
         self.menu_page = MenuFrame(self)
