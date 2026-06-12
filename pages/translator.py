@@ -2,7 +2,7 @@ langs = [
     {
         "English": {
             # PAGE TITLES
-            "menu_page_title": "Personal Symptom\nTracker",
+            "menu_page_title": "~ Personal Symptom ~\n~ Tracker ~",
         }
     }
 ]
