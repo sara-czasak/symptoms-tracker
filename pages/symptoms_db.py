@@ -96,6 +96,20 @@ class SymptomsDB:
             print("Database error")
 
 
+    def get_logs_id_by_date(self, date):
+        """Get logs id by date"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("SELECT * FROM logs WHERE date = ?", (date,))
+            log_id = cursor.fetchone()
+            return log_id
+            conn.commit()
+        except IntegrityError:
+            print("IntegrityError")
+        except OperationalError:
+            print("Database error")
+
     def add_log_details(self):
         """Add a log details to the database"""
         conn = self.get_connection()
@@ -106,3 +120,4 @@ class SymptomsDB:
             print("IntegrityError")
         except OperationalError:
             print("Database error")
+
