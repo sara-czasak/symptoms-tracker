@@ -82,3 +82,14 @@ class SymptomsDB:
         except OperationalError:
             print("Database error")
 
+
+    def add_log_details(self):
+        """Add a log to the database"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            pass
+        except IntegrityError:
+            print("IntegrityError")
+        except OperationalError:
+            print("Database error")

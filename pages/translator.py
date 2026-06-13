@@ -33,6 +33,7 @@ langs = [
 
             # ADD LOG WIDGETS
             "save": "SAVE",
+            "add_log_date": "Date (YYYY-MM-DD): "
         }
     }
 ]
