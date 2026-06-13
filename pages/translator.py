@@ -14,8 +14,6 @@ langs = [
             "about_btn": "ABOUT",
             "add_symptoms_btn": "ADD SYMPTOMS\nTO TRACK",
             "exit_btn": "EXIT",
-            "menu_page_symptom_hint": "Please make sure to add symptoms to track to be able to add entry",
-            "menu_page_entry_hint": "Please add a new log to view logs and analysis",
 
             # SETTINGS WIDGETS
             "export_btn": "EXPORT DATA",

@@ -9,12 +9,14 @@ class SymptomsDB:
 
 
     def get_connection(self):
+        """Get database connection"""
         conn = sqlite3.connect('symptom_tracker.db')
         conn.execute("PRAGMA foreign_keys = ON")
         return conn
 
 
     def create_database(self):
+        """Create tables if they don't exist"""
         conn = self.get_connection()
         cursor = conn.cursor()
         try:
@@ -29,12 +31,13 @@ class SymptomsDB:
             conn.close()
 
 
-    def add_symptom(self, symptom, type):
+    def add_symptom(self, symptom, type_):
+        """Add a symptom to the database"""
         conn = self.get_connection()
         cursor = conn.cursor()
         try:
             cursor.execute("INSERT INTO symptoms (symptom, track_type) VALUES (?, ?)",
-                           (symptom, type))
+                           (symptom, type_))
             conn.commit()
         except IntegrityError:
             print("Symptom already exists")
@@ -45,6 +48,7 @@ class SymptomsDB:
 
 
     def check_if_symptoms(self):
+        """Check if symptoms exist in the database"""
         conn = self.get_connection()
         cursor = conn.cursor()
         try:
@@ -63,6 +67,7 @@ class SymptomsDB:
 
 
     def get_symptoms(self):
+        """Get list of all symptoms"""
         conn = self.get_connection()
         cursor = conn.cursor()
         try:

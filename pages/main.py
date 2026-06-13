@@ -3,6 +3,7 @@ from menu_page import MenuFrame
 from settings_page import SettingsFrame
 from translator import Translator
 from add_symptom_page import AddSymptomFrame
+from add_log_page import AddLogFrame
 from PIL import Image
 
 
@@ -38,6 +39,7 @@ class App(ctk.CTk):
         self.menu_page = MenuFrame(self)
         self.settings_page = SettingsFrame(self)
         self.add_symptom_page = AddSymptomFrame(self)
+        self.add_log_page = AddLogFrame(self)
 
         # CHECK IF BUTTONS SHOULD BE ENABLED
         self.menu_page.update_button_states()
@@ -81,7 +83,15 @@ class App(ctk.CTk):
         self.add_symptom_page.pack_forget()
 
 
+    def show_add_log(self):
+        """Hide menu, show add log page"""
+        self.menu_page.pack_forget()
+        self.add_log_page.pack(padx=15, pady=15, fill="both", expand=True)
 
+
+    def hide_add_log(self):
+        """hide add log"""
+        self.add_log_page.pack_forget()
 
 
 

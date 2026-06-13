@@ -9,8 +9,6 @@ class MenuFrame(ctk.CTkFrame):
 
         # WIDGETS
         self.page_title = None
-        self.hint_symptoms = None
-        self.hint_logs = None
         self.add_log_btn = None
         self.analysis_btn = None
         self.view_entries_btn = None
@@ -33,30 +31,11 @@ class MenuFrame(ctk.CTkFrame):
         )
         self.page_title.pack(padx=5, pady=15)
 
-        # if not self.parent.has_symptoms:
-        #     self.hint_symptoms = ctk.CTkLabel(
-        #         self,
-        #         text=self.parent.translator.dictionary["menu_page_symptom_hint"],
-        #         font=self.parent.hint_font,
-        #     )
-        #     self.hint_symptoms.pack(padx=5, pady=1)
-        # else:
-        #     self.hint_symptoms.pack_forget()
-        #
-        # if not self.parent.has_logs:
-        #     self.hint_logs = ctk.CTkLabel(
-        #         self,
-        #         text=self.parent.translator.dictionary["menu_page_entry_hint"],
-        #         font=self.parent.hint_font,
-        #     )
-        #     self.hint_logs.pack(padx=5, pady=1)
-        # else:
-        #     self.hint_logs.pack_forget()
-
         self.add_log_btn = ctk.CTkButton(
             self,
             text=self.parent.translator.dictionary["add_log"],
             font=self.parent.button_font,
+            command=self.parent.show_add_log,
         )
         self.add_log_btn.pack(padx=5, pady=5)
 
