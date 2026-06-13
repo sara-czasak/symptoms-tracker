@@ -12,10 +12,13 @@ class AddLogFrame(ctk.CTkFrame):
         self.page_title = None
         self.back_to_menu_btn = None
         self.scroll_symptoms = None
+        self.scroll_notes = None
         self.add_log_btn = None
         self.date_label = None
         self.date_entry = None
         self.date_frm = None
+        self.notes_label = None
+        self.notes_entry = None
 
         # WIDGET GROUPS
         self.checkbox_fields = []
@@ -38,7 +41,7 @@ class AddLogFrame(ctk.CTkFrame):
             text=self.parent.translator.dictionary["add_log_title"],
             font=self.parent.title_font,
         )
-        self.page_title.pack(padx=5, pady=40)
+        self.page_title.pack(padx=5, pady=10)
 
         self.back_to_menu_btn = ctk.CTkButton(
             self,
@@ -137,13 +140,29 @@ class AddLogFrame(ctk.CTkFrame):
 
             symptom_text = ctk.CTkEntry(
                 text_frm,
-                width=250,
             )
 
             symptom_text.grid(row=0, column=1, sticky='e')
 
             self.text_fields.append(text_frm)
             text_frm.pack(fill="both", expand=True, pady=5)
+
+        self.notes_label = ctk.CTkLabel(
+            self.scroll_symptoms,
+            text=self.parent.translator.dictionary["add_log_notes"],
+            font=self.parent.label_font,
+        )
+        self.notes_label.pack(padx=5, pady=5)
+
+        self.scroll_notes = ctk.CTkScrollableFrame(
+            self.scroll_symptoms,
+        )
+        self.scroll_notes.pack(padx=5, pady=5, fill="both")
+
+        self.notes_entry = ctk.CTkTextbox(
+            self.scroll_notes,
+        )
+        self.notes_entry.pack(padx=5, pady=5, fill="both")
 
         self.add_log_btn = ctk.CTkButton(
             self.scroll_symptoms,
@@ -195,3 +214,5 @@ class AddLogFrame(ctk.CTkFrame):
             for j in i.winfo_children():
                 if isinstance(j, ctk.CTkEntry):
                     j.delete(0, "end")
+
+        self.notes_entry.delete("1.0", "end")
