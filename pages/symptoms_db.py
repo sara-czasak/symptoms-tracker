@@ -66,6 +66,23 @@ class SymptomsDB:
             conn.close()
 
 
+    def check_if_logs(self):
+        """Check if logs exist in the database"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("SELECT * FROM logs")
+            logs = cursor.fetchall()
+            if len(logs) == 0:
+                return False
+            else:
+                return True
+        except IntegrityError:
+            print("IntegrityError")
+        except OperationalError:
+            print("Database error")
+
+
     def get_symptoms(self):
         """Get list of all symptoms"""
         conn = self.get_connection()
@@ -121,4 +138,7 @@ class SymptomsDB:
             print("IntegrityError")
         except OperationalError:
             print("Database error")
+
+
+
 

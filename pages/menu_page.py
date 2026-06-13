@@ -90,6 +90,7 @@ class MenuFrame(ctk.CTkFrame):
         db = SymptomsDB()
         try:
             self.parent.has_symptoms = db.check_if_symptoms()
+            self.parent.has_logs = db.check_if_logs()
         except Exception as e:
             print("Error: ", e)
         if self.parent.has_symptoms:
