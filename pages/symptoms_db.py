@@ -73,7 +73,6 @@ class SymptomsDB:
         try:
             cursor.execute("SELECT * FROM symptoms")
             symptoms = cursor.fetchall()
-            print(symptoms)
             if len(symptoms) == 0:
                 return []
             else:
