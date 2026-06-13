@@ -60,3 +60,21 @@ class SymptomsDB:
             print("Database error")
         finally:
             conn.close()
+
+
+    def get_symptoms(self):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("SELECT * FROM symptoms")
+            symptoms = cursor.fetchall()
+            print(symptoms)
+            if len(symptoms) == 0:
+                return []
+            else:
+                return symptoms
+        except IntegrityError:
+            print("IntegrityError")
+        except OperationalError:
+            print("Database error")
+
