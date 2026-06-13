@@ -141,7 +141,17 @@ class SymptomsDB:
 
 
     def get_logs_in_reverse_date_order(self):
-        pass
+        """Get records by date in reverse order"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("SELECT * FROM logs ORDER BY date DESC")
+            logs = cursor.fetchall()
+            return logs
+        except IntegrityError:
+            print("IntegrityError")
+        except OperationalError:
+            print("Database error")
 
 
 

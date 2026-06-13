@@ -37,6 +37,13 @@ langs = [
             "add_log_date": "Date (YYYY-MM-DD): ",
             "add_log_notes": "Notes: ",
             "yes": "YES",
+
+            # VIEW ALL LOGS
+            "view": "SEE DETAILS",
+            "edit": "EDIT LOG",
+            "delete": "DELETE LOG",
+            "opt": "OPTIONS",
+            "confirm": "SELECT"
         }
     }
 ]

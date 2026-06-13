@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from symptoms_db import SymptomsDB
+from CTkListbox import *
 
 
 class ViewLogsFrame(ctk.CTkFrame):
@@ -10,6 +11,17 @@ class ViewLogsFrame(ctk.CTkFrame):
         # WIDGETS
         self.page_title = None
         self.back_to_menu_btn = None
+        self.option_frm = None
+        self.option_menu = None
+        self.select_opt = None
+        self.listbox = None
+
+        self.log_data = []
+        self.options = [
+            self.parent.translator.dictionary["view"],
+            self.parent.translator.dictionary["edit"],
+            self.parent.translator.dictionary["delete"],
+        ]
 
         self.layout()
 
@@ -33,9 +45,54 @@ class ViewLogsFrame(ctk.CTkFrame):
         )
         self.back_to_menu_btn.pack(padx=5, pady=35, side="bottom")
 
+        self.option_frm = ctk.CTkFrame(
+            self
+        )
+        self.option_frm.pack(pady=15)
+
+        self.option_menu = ctk.CTkOptionMenu(
+            self.option_frm,
+            values=self.options,
+            font=self.parent.button_font,
+        )
+
+        self.option_menu.set(self.parent.translator.dictionary["opt"])
+        self.option_menu.grid(row=0, column=0, padx=10)
+
+        self.select_opt = ctk.CTkButton(
+            self.option_frm,
+            text=self.parent.translator.dictionary["confirm"],
+            font=self.parent.button_font,
+            width=100,
+        )
+
+        self.select_opt.grid(row=0, column=1, padx=10)
+
+        self.listbox = CTkListbox(
+            self,
+            height=240,
+        )
+
+        self.get_logs()
+        for i in self.log_data:
+            self.listbox.insert('end', i['date'])
+
+        self.listbox.pack(expand=True, fill="both")
+
 
     def get_logs(self):
-        pass
+        db = SymptomsDB()
+        try:
+            logs = db.get_logs_in_reverse_date_order()
+            for i in logs:
+                data = {
+                    "date": i[1],
+                    "id": i[0],
+                    "notes": i[3]
+                }
+                self.log_data.append(data)
+        except Exception as e:
+            print("Error: ", e)
 
 
     def back_to_menu(self):
