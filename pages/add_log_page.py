@@ -226,6 +226,9 @@ class AddLogFrame(ctk.CTkFrame):
 
     def get_data_and_save(self):
         self.get_data()
+        self.save_data()
+        self.reset_fields()
+        self.back_to_menu()
 
 
     def get_data(self):
@@ -261,8 +264,14 @@ class AddLogFrame(ctk.CTkFrame):
         self.log_data['symptoms'] = symptoms
 
 
-
-
-
     def save_data(self):
-        pass
+        """Save log data to database"""
+        db = SymptomsDB()
+        try:
+            db.add_log(
+                date = self.log_data['date'],
+                sympt_num = self.log_data['symptoms'],
+                notes = self.log_data['notes'],
+            )
+        except Exception as e:
+            print("Error: ", e)

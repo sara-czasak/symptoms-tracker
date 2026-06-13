@@ -83,8 +83,21 @@ class SymptomsDB:
             print("Database error")
 
 
-    def add_log_details(self):
+    def add_log(self, date, sympt_num, notes):
         """Add a log to the database"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("INSERT INTO logs (date, sympt_num, notes) VALUES (?, ?, ?)", (date, sympt_num, notes))
+            conn.commit()
+        except IntegrityError:
+            print("IntegrityError")
+        except OperationalError:
+            print("Database error")
+
+
+    def add_log_details(self):
+        """Add a log details to the database"""
         conn = self.get_connection()
         cursor = conn.cursor()
         try:
