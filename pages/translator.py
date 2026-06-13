@@ -6,6 +6,7 @@ langs = [
             "settings_title": "~ SETTINGS ~",
             "add_symptom_title": "~ ADD SYMPTOM ~",
             "add_log_title": "~ ADD LOG ~",
+            "view_all_title": "~ ALL LOGS ~",
 
             # MENU WIDGETS
             "add_log": "NEW LOG",

@@ -50,6 +50,7 @@ class MenuFrame(ctk.CTkFrame):
             self,
             text=self.parent.translator.dictionary["view_entries_btn"],
             font=self.parent.button_font,
+            command=self.parent.show_view_logs,
         )
         self.view_entries_btn.pack(padx=5, pady=5)
 

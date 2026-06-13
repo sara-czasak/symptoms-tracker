@@ -140,5 +140,9 @@ class SymptomsDB:
             print("Database error")
 
 
+    def get_logs_in_reverse_date_order(self):
+        pass
+
+
 
 
