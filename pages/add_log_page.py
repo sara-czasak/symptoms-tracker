@@ -30,12 +30,15 @@ class AddLogFrame(ctk.CTkFrame):
         self.scale_symptoms_dict = {}
         self.text_symptoms_dict = {}
         self.scale_values = [str(i) for i in range(6)]
+        self.log_data = {}
+        self.log_details_data = {}
 
         self.get_symptoms()
         self.layout()
 
 
     def layout(self):
+        """Create UI"""
         self.page_title = ctk.CTkLabel(
             self,
             text=self.parent.translator.dictionary["add_log_title"],
@@ -168,6 +171,7 @@ class AddLogFrame(ctk.CTkFrame):
             self.scroll_symptoms,
             text=self.parent.translator.dictionary["save"],
             font=self.parent.button_font,
+            command=self.get_data_and_save,
         )
         self.add_log_btn.pack(padx=5, pady=5)
 
@@ -180,6 +184,7 @@ class AddLogFrame(ctk.CTkFrame):
 
 
     def get_symptoms(self):
+        """Get all symptoms and sort by type"""
         db = SymptomsDB()
         try:
             data = db.get_symptoms()
@@ -200,6 +205,7 @@ class AddLogFrame(ctk.CTkFrame):
 
 
     def reset_fields(self):
+        """Reset fields"""
         for i in self.checkbox_fields:
             for j in i.winfo_children():
                 if isinstance(j, ctk.CTkCheckBox):
@@ -216,3 +222,47 @@ class AddLogFrame(ctk.CTkFrame):
                     j.delete(0, "end")
 
         self.notes_entry.delete("1.0", "end")
+
+
+    def get_data_and_save(self):
+        self.get_data()
+
+
+    def get_data(self):
+        """Get data from log and sort by log and details"""
+        self.log_data['date'] = self.date_entry.get()
+        self.log_data['notes'] = self.notes_entry.get("1.0", 'end').strip()
+        symptoms = 0
+        label = None
+        for i in self.checkbox_fields:
+            for j in i.winfo_children():
+                if isinstance(j, ctk.CTkLabel):
+                    label = j.cget("text")
+                if isinstance(j, ctk.CTkCheckBox) and j.get() == 1:
+                    symptoms += 1
+                    self.log_details_data[label] = self.parent.translator.dictionary["yes"]
+                    label = None
+        for i in self.scale_fields:
+            for j in i.winfo_children():
+                if isinstance(j, ctk.CTkLabel):
+                    label = j.cget("text")
+                if isinstance(j, ctk.CTkOptionMenu) and j.get() != "0":
+                    symptoms += 1
+                    self.log_details_data[label] = j.get()
+                    label = None
+        for i in self.text_fields:
+            for j in i.winfo_children():
+                if isinstance(j, ctk.CTkLabel):
+                    label = j.cget("text")
+                if isinstance(j, ctk.CTkEntry) and j.get() != "":
+                    symptoms += 1
+                    self.log_details_data[label] = j.get()
+                    label = None
+        self.log_data['symptoms'] = symptoms
+
+
+
+
+
+    def save_data(self):
+        pass
