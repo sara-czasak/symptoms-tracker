@@ -84,7 +84,7 @@ class App(ctk.CTk):
 
 
     def show_add_log(self):
-        """Hide menu, show add log page"""
+        """Hide menu and show add log"""
         self.menu_page.pack_forget()
         self.add_log_page.pack(padx=15, pady=15, fill="both", expand=True)
 

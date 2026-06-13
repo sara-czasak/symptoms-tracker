@@ -5,6 +5,7 @@ langs = [
             "menu_page_title": "~ Personal Symptom ~\n~ Tracker ~",
             "settings_title": "~ SETTINGS ~",
             "add_symptom_title": "~ ADD SYMPTOM ~",
+            "add_log_title": "~ ADD LOG ~",
 
             # MENU WIDGETS
             "add_log": "NEW LOG",
