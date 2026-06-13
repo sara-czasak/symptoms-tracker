@@ -70,6 +70,7 @@ class AddSymptomFrame(ctk.CTkFrame):
             values=values,
             width=250,
         )
+
         self.symptom_type_entry.set(self.parent.translator.dictionary["choose"])
         self.symptom_type_entry.pack(padx=5, pady=5)
 

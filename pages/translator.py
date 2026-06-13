@@ -29,7 +29,10 @@ langs = [
             "text": "PLANE TEXT",
             "choose": "SELECT OPTION",
             "type": "How would you like to track?",
-            "add_symptom": "ADD SYMPTOM"
+            "add_symptom": "ADD SYMPTOM",
+
+            # ADD LOG WIDGETS
+            "save": "SAVE",
         }
     }
 ]

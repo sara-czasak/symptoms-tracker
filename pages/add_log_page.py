@@ -11,6 +11,7 @@ class AddLogFrame(ctk.CTkFrame):
         self.page_title = None
         self.back_to_menu_btn = None
         self.scroll_symptoms = None
+        self.add_log_btn = None
 
         # WIDGET GROUPS
         self.checkbox_fields = []
@@ -116,6 +117,13 @@ class AddLogFrame(ctk.CTkFrame):
 
             self.scale_fields.append(text_frm)
             text_frm.pack(fill="both", expand=True, pady=5)
+
+        self.add_log_btn = ctk.CTkButton(
+            self.scroll_symptoms,
+            text=self.parent.translator.dictionary["save"],
+            font=self.parent.button_font,
+        )
+        self.add_log_btn.pack(padx=5, pady=5)
 
 
     def back_to_menu(self):
