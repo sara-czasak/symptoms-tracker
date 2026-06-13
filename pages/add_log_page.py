@@ -115,7 +115,7 @@ class AddLogFrame(ctk.CTkFrame):
 
             symptom_text.grid(row=0, column=1, sticky='e')
 
-            self.scale_fields.append(text_frm)
+            self.text_fields.append(text_frm)
             text_frm.pack(fill="both", expand=True, pady=5)
 
         self.add_log_btn = ctk.CTkButton(
@@ -125,10 +125,10 @@ class AddLogFrame(ctk.CTkFrame):
         )
         self.add_log_btn.pack(padx=5, pady=5)
 
-
     def back_to_menu(self):
         """Reset fields and go back to menu"""
         self.parent.hide_add_log()
+        self.reset_fields()
         self.parent.show_menu()
 
 
@@ -154,4 +154,17 @@ class AddLogFrame(ctk.CTkFrame):
 
 
     def reset_fields(self):
-        pass
+        for i in self.checkbox_fields:
+            for j in i.winfo_children():
+                if isinstance(j, ctk.CTkCheckBox):
+                    j.deselect()
+
+        for i in self.scale_fields:
+            for j in i.winfo_children():
+                if isinstance(j, ctk.CTkOptionMenu):
+                    j.set(self.scale_values[0])
+
+        for i in self.text_fields:
+            for j in i.winfo_children():
+                if isinstance(j, ctk.CTkEntry):
+                    j.delete(0, "end")
