@@ -101,21 +101,22 @@ class SymptomsDB:
         conn = self.get_connection()
         cursor = conn.cursor()
         try:
-            cursor.execute("SELECT * FROM logs WHERE date = ?", (date,))
+            cursor.execute("SELECT id FROM logs WHERE date = ?", (date,))
             log_id = cursor.fetchone()
             return log_id
-            conn.commit()
         except IntegrityError:
             print("IntegrityError")
         except OperationalError:
             print("Database error")
 
-    def add_log_details(self):
+
+    def add_log_details(self, log_id, symptom, level):
         """Add a log details to the database"""
         conn = self.get_connection()
         cursor = conn.cursor()
         try:
-            pass
+            cursor.execute("INSERT INTO log_details (logs_id, symptom, level) VALUES (?, ?, ?)", (log_id, symptom, level))
+            conn.commit()
         except IntegrityError:
             print("IntegrityError")
         except OperationalError:

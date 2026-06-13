@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS log_details (
 id INTEGER PRIMARY KEY,
 logs_id INTEGER NOT NULL,
 symptom TEXT NOT NULL,
-level INTEGER NOT NULL,
+level TEXT NOT NULL,
 FOREIGN KEY (logs_id) REFERENCES logs(id)
 )
 """
