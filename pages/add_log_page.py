@@ -91,7 +91,7 @@ class AddLogFrame(ctk.CTkFrame):
 
             check_label = ctk.CTkLabel(
                 check_frm,
-                text=f"{i}:",
+                text=f"{i.capitalize()}:",
                 font=self.parent.label_font,
             )
 

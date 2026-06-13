@@ -48,6 +48,20 @@ class App(ctk.CTk):
         self.show_menu()
 
 
+    def refresh_screen(self):
+        self.menu_page.destroy()
+        self.menu_page = MenuFrame(self)
+
+        self.settings_page.destroy()
+        self.settings_page = SettingsFrame(self)
+
+        self.add_log_page.destroy()
+        self.add_symptom_page = AddSymptomFrame(self)
+
+        self.add_log_page.destroy()
+        self.add_log_page = AddLogFrame(self)
+
+
     def show_menu(self):
         """Show menu page and hide other pages"""
         self.hide_settings()
@@ -86,13 +100,13 @@ class App(ctk.CTk):
     def show_add_log(self):
         """Hide menu and show add log"""
         self.menu_page.pack_forget()
+        self.refresh_screen()
         self.add_log_page.pack(padx=15, pady=15, fill="both", expand=True)
 
 
     def hide_add_log(self):
         """hide add log"""
         self.add_log_page.pack_forget()
-
 
 
 app = App()
