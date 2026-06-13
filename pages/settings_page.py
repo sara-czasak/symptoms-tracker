@@ -41,6 +41,7 @@ class SettingsFrame(ctk.CTkFrame):
             image=self.parent.back_img,
             font=self.parent.back_btn_font,
             command=self.parent.show_menu,
+            width=50,
         )
         self.back_to_menu_btn.pack(padx=5, pady=35, side="bottom")
 

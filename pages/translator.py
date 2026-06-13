@@ -27,6 +27,7 @@ langs = [
             "add_symptom_name": "Symptom name:",
             "scale": "SCALE (0-5)",
             "yes_no": "PRESENT/NOT PRESENT",
+            "text": "PLANE TEXT",
             "choose": "SELECT OPTION",
             "type": "How would you like to track?",
             "add_symptom": "ADD SYMPTOM"

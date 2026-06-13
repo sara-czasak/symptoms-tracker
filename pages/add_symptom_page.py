@@ -35,6 +35,7 @@ class AddSymptomFrame(ctk.CTkFrame):
             image=self.parent.back_img,
             font=self.parent.back_btn_font,
             command=self.back_to_menu,
+            width=50,
         )
         self.back_to_menu_btn.pack(padx=5, pady=35, side="bottom")
 
@@ -60,7 +61,8 @@ class AddSymptomFrame(ctk.CTkFrame):
 
         values = [
             self.parent.translator.dictionary["scale"],
-            self.parent.translator.dictionary["yes_no"]
+            self.parent.translator.dictionary["yes_no"],
+            self.parent.translator.dictionary["text"],
         ]
 
         self.symptom_type_entry = ctk.CTkOptionMenu(
@@ -97,7 +99,9 @@ class AddSymptomFrame(ctk.CTkFrame):
 
     def add_symptom(self):
         """Add a new symptom to the database"""
-        if self.symptom_type_entry != "" and self.symptom_type_entry.get() != self.parent.translator.dictionary["choose"]:
+        name_filled = self.symptom_name_entry.get().strip() != ""
+        type_selected = self.symptom_type_entry.get() != self.parent.translator.dictionary["choose"]
+        if name_filled and type_selected:
             db = SymptomsDB()
             try:
                 symptom_name = self.symptom_name_entry.get()
@@ -108,4 +112,4 @@ class AddSymptomFrame(ctk.CTkFrame):
             except Exception as e:
                 print("Error: ", e)
         else:
-            print("Error: Need to add name and type")
+            pass

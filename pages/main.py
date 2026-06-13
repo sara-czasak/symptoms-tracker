@@ -10,6 +10,7 @@ class App(ctk.CTk):
     def __init__(self):
         super().__init__()
 
+        # SCREEN SETUP
         self.geometry('400x470')
         self.title('Symptoms Tracker')
         self.resizable(width=False, height=False)
