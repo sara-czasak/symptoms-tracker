@@ -59,12 +59,50 @@ class EditLogFrame(ctk.CTkFrame):
         )
         self.back_to_logs_btn.pack(padx=5, pady=5, side="bottom")
 
-
-        # ADD UI ELEMENTS FOR EACH ITEM. SAME AS ADD LOG BUT PREFILL VALS
         self.scroll_screen = ctk.CTkScrollableFrame(
             self,
         )
         self.scroll_screen.pack(fill="both", expand=True)
+
+        self.date_frm = ctk.CTkFrame(
+            self.scroll_screen,
+        )
+        self.date_frm.pack(fill="both", expand=True)
+        self.date_frm.grid_columnconfigure(1, weight=1)
+
+        self.date_label = ctk.CTkLabel(
+            self.date_frm,
+            font=self.parent.label_font,
+            text=self.parent.translator.dictionary["add_log_date"],
+        )
+
+        self.date_label.grid(row=0, column=0, padx=5)
+
+        self.date_entry = ctk.CTkEntry(
+            self.date_frm,
+            width=150,
+        )
+        self.date_entry.insert(0, self.log_data["Date"])
+        self.date_entry.grid(row=0, column=1, sticky='e')
+
+        self.notes_label = ctk.CTkLabel(
+            self.scroll_screen,
+            text=self.parent.translator.dictionary["add_log_notes"],
+            font=self.parent.label_font,
+        )
+        self.notes_label.pack(padx=5, pady=5)
+
+        self.scroll_notes = ctk.CTkScrollableFrame(
+            self.scroll_screen,
+        )
+        self.scroll_notes.pack(padx=5, pady=5, fill="both")
+
+        self.notes_entry = ctk.CTkTextbox(
+            self.scroll_notes,
+        )
+        self.notes_entry.insert("end", self.log_data["Notes"])
+        self.notes_entry.pack(padx=5, pady=5, fill="both")
+
 
         self.save_changes_btn = ctk.CTkButton(
             self,
