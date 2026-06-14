@@ -31,17 +31,15 @@ class EditLogFrame(ctk.CTkFrame):
         self.text_symptoms_dict = {}
         self.scale_values = [str(i) for i in range(6)]
         self.log_data = {}
-        self.log_details_data = {}
-
-        # DATA TO VIEW
-        self.log_data = {}
         self.log_details = None
         self.log_id = None
 
 
     def layout(self):
         """Create UI"""
-        self.get_log_and_details_ids()
+        self.get_symptoms()
+        print(self.checkbox_symptoms_dict)
+
         self.page_title = ctk.CTkLabel(
             self,
             text=self.parent.translator.dictionary["edit_log_title"],
@@ -85,6 +83,43 @@ class EditLogFrame(ctk.CTkFrame):
         self.date_entry.insert(0, self.log_data["Date"])
         self.date_entry.grid(row=0, column=1, sticky='e')
 
+
+        for i in self.checkbox_symptoms_dict.items():
+            check_frm = ctk.CTkFrame(
+                self.scroll_screen,
+            )
+            check_frm.grid_columnconfigure(1, weight=1)
+            check_frm.pack(fill="both", expand=True)
+            check_label = ctk.CTkLabel(
+                check_frm,
+                text=f"{i[1].capitalize()}:",
+                font=self.parent.label_font,
+            )
+            check_label.grid(row=0, column=0, sticky="w", padx=5)
+
+            for j in self.log_details:
+                if i[1].lower() == j[2].lower() and j[4] == 'yes_no':
+                    checkbox = ctk.CTkCheckBox(
+                        check_frm,
+                        text="",
+                    )
+                    checkbox.select()
+                    checkbox.grid(row=0, column=1, sticky="w")
+
+                    self.checkbox_fields.append(check_frm)
+                    check_frm.pack(fill="both", expand=True, pady=5)
+
+                elif i[1].lower() != j[2].lower() and j[4] == 'yes_no':
+                    checkbox = ctk.CTkCheckBox(
+                        check_frm,
+                        text="",
+                    )
+                    checkbox.grid(row=0, column=1, sticky="w")
+
+                    self.checkbox_fields.append(check_frm)
+                    check_frm.pack(fill="both", expand=True, pady=5)
+
+
         self.notes_label = ctk.CTkLabel(
             self.scroll_screen,
             text=self.parent.translator.dictionary["add_log_notes"],
@@ -100,7 +135,8 @@ class EditLogFrame(ctk.CTkFrame):
         self.notes_entry = ctk.CTkTextbox(
             self.scroll_notes,
         )
-        self.notes_entry.insert("end", self.log_data["Notes"])
+        if 'Notes' in self.log_data.keys():
+            self.notes_entry.insert("1.0", self.log_data["Notes"])
         self.notes_entry.pack(padx=5, pady=5, fill="both")
 
 
@@ -112,8 +148,8 @@ class EditLogFrame(ctk.CTkFrame):
         self.save_changes_btn.pack(padx=5, pady=5)
 
 
-
     def get_log_and_details_ids(self):
+        """Get log_id and details from db"""
         db = SymptomsDB()
         try:
             self.log_id = db.get_logs_id_by_date(self.log_data["Date"])[0]
@@ -122,6 +158,28 @@ class EditLogFrame(ctk.CTkFrame):
             print("Error: ", e)
 
 
+    def get_symptoms(self):
+        """Get all symptoms and sort by type"""
+        db = SymptomsDB()
+        try:
+            data = db.get_symptoms()
+            if len(data) > 0:
+                for symptom in data:
+                    if symptom[2] == self.parent.translator.dictionary["yes_no"]:
+                        self.checkbox_symptoms_dict[symptom[0]] = symptom[1]
+                    elif symptom[2] == self.parent.translator.dictionary["scale"]:
+                        self.scale_symptoms_dict[symptom[0]] = symptom[1]
+                    elif symptom[2] == self.parent.translator.dictionary["text"]:
+                        self.text_symptoms_dict[symptom[0]] = symptom[1]
+                    else:
+                        pass
+            else:
+                pass
+        except Exception as e:
+            print("Error: ", e)
+
+
     def back_to_view_logs(self):
+        """Go back to view logs page"""
         self.parent.hide_edit_log()
         self.parent.show_view_logs()

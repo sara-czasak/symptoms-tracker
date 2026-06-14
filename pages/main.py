@@ -149,6 +149,7 @@ class App(ctk.CTk):
     def show_edit_log(self):
         self.hide_show_logs()
         self.edit_log_page.log_data = self.view_logs_page.view_log()
+        self.edit_log_page.get_log_and_details_ids()
         self.edit_log_page.layout()
         self.edit_log_page.pack(padx=15, pady=15, fill="both", expand=True)
 
