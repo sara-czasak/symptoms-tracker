@@ -103,7 +103,7 @@ class ViewLogsFrame(ctk.CTkFrame):
         if opt == self.parent.translator.dictionary["view"]:
             self.parent.show_view_entry()
         elif opt == self.parent.translator.dictionary["edit"]:
-            print("EDIT")
+            self.parent.show_edit_log()
         elif opt == self.parent.translator.dictionary["delete"]:
             self.delete_log()
 
