@@ -151,12 +151,12 @@ class SymptomsDB:
             conn.close()
 
 
-    def add_log_details(self, log_id, symptom, level):
+    def add_log_details(self, log_id, symptom, level, type_):
         """Add a log details to the database"""
         conn = self.get_connection()
         cursor = conn.cursor()
         try:
-            cursor.execute("INSERT INTO log_details (logs_id, symptom, level) VALUES (?, ?, ?)", (log_id, symptom, level))
+            cursor.execute("INSERT INTO log_details (logs_id, symptom, level, track_type) VALUES (?, ?, ?, ?)", (log_id, symptom, level, type_))
             conn.commit()
         except IntegrityError:
             print("IntegrityError")

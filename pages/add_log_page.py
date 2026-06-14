@@ -243,7 +243,7 @@ class AddLogFrame(ctk.CTkFrame):
                     label = j.cget("text")
                 if isinstance(j, ctk.CTkCheckBox) and j.get() == 1:
                     symptoms += 1
-                    self.log_details_data[label] = self.parent.translator.dictionary["yes"]
+                    self.log_details_data[label] = [self.parent.translator.dictionary["yes"], "yes_no"]
                     label = None
         for i in self.scale_fields:
             for j in i.winfo_children():
@@ -251,7 +251,7 @@ class AddLogFrame(ctk.CTkFrame):
                     label = j.cget("text")
                 if isinstance(j, ctk.CTkOptionMenu) and j.get() != "0":
                     symptoms += 1
-                    self.log_details_data[label] = j.get()
+                    self.log_details_data[label] = [j.get(), "scale"]
                     label = None
         for i in self.text_fields:
             for j in i.winfo_children():
@@ -259,7 +259,7 @@ class AddLogFrame(ctk.CTkFrame):
                     label = j.cget("text")
                 if isinstance(j, ctk.CTkEntry) and j.get() != "":
                     symptoms += 1
-                    self.log_details_data[label] = j.get()
+                    self.log_details_data[label] = [j.get(), "text"]
                     label = None
         self.log_data['symptoms'] = symptoms
 
@@ -277,7 +277,7 @@ class AddLogFrame(ctk.CTkFrame):
             for k, v in self.log_details_data.items():
                 print("k", k)
                 print("v", v)
-                db.add_log_details(log_id, k.replace(":", ""), v)
+                db.add_log_details(log_id, k.replace(":", ""), v[0], v[1])
         except Exception as e:
             print("Error: ", e)
 
