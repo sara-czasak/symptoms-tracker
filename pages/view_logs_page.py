@@ -22,7 +22,7 @@ class ViewLogsFrame(ctk.CTkFrame):
             self.parent.translator.dictionary["edit"],
             self.parent.translator.dictionary["delete"],
         ]
-        self.log_view_edit_data = {}
+        self.log_view_data = {}
 
         self.layout()
 
@@ -114,11 +114,13 @@ class ViewLogsFrame(ctk.CTkFrame):
         if self.listbox.get() is not None:
             try:
                 log_id = db.get_logs_id_by_date(self.listbox.get())[0]
-                print("log_id: ", log_id)
                 log_details = db.get_log_details_by_id(log_id)
-                log = db.get_log_by_date(self.listbox.get())
-                print("log: ", log)
-                print("log_details: ", log_details)
+                log = db.get_log_by_date(self.listbox.get())[0]
+                self.log_view_data["date"] = log[1]
+                self.log_view_data["notes"] = log[3]
+                for symptom in log_details:
+                    print("symptom: ", symptom)
+                    self.log_view_data[symptom[2]] = symptom[3]
             except Exception as e:
                 print("Error: ", e)
         else:
