@@ -22,6 +22,7 @@ class ViewLogsFrame(ctk.CTkFrame):
             self.parent.translator.dictionary["edit"],
             self.parent.translator.dictionary["delete"],
         ]
+        self.log_view_edit_data = {}
 
         self.layout()
 
@@ -101,17 +102,33 @@ class ViewLogsFrame(ctk.CTkFrame):
         """Check which option is selected and redirect accordingly"""
         opt = self.option_menu.get()
         if opt == self.parent.translator.dictionary["view"]:
-            self.parent.show_view_entry()
+            self.view_log()
         elif opt == self.parent.translator.dictionary["edit"]:
             print("EDIT")
         elif opt == self.parent.translator.dictionary["delete"]:
             self.delete_log()
 
 
+    def view_log(self):
+        db = SymptomsDB()
+        if self.listbox.get() is not None:
+            try:
+                log_id = db.get_logs_id_by_date(self.listbox.get())[0]
+                print("log_id: ", log_id)
+                log_details = db.get_log_details_by_id(log_id)
+                log = db.get_log_by_date(self.listbox.get())
+                print("log: ", log)
+                print("log_details: ", log_details)
+            except Exception as e:
+                print("Error: ", e)
+        else:
+            print("MAKE A SELECTION")
+
+
     def delete_log(self):
         """Delete selected log"""
         db = SymptomsDB()
-        if self.listbox.curselection():
+        if self.listbox.get() is not None:
             try:
                 db.delete_log(self.listbox.get())
                 self.parent.refresh_screen()
@@ -122,7 +139,7 @@ class ViewLogsFrame(ctk.CTkFrame):
             except Exception as e:
                 print("Error: ", e)
         else:
-            pass
+            print("MAKE A SELECTION")
 
 
     def back_to_menu(self):

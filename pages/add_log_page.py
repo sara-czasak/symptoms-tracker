@@ -274,8 +274,10 @@ class AddLogFrame(ctk.CTkFrame):
                 notes = self.log_data['notes'],
             )
             log_id = db.get_logs_id_by_date(self.log_data['date'])[0]
-            for k, v in enumerate(self.log_details_data):
-                db.add_log_details(log_id, v.replace(":", ""), k)
+            for k, v in self.log_details_data.items():
+                print("k", k)
+                print("v", v)
+                db.add_log_details(log_id, k.replace(":", ""), v)
         except Exception as e:
             print("Error: ", e)
 

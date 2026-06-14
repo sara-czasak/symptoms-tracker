@@ -81,6 +81,8 @@ class SymptomsDB:
             print("IntegrityError")
         except OperationalError:
             print("Database error")
+        finally:
+            conn.close()
 
 
     def get_symptoms(self):
@@ -98,6 +100,8 @@ class SymptomsDB:
             print("IntegrityError")
         except OperationalError:
             print("Database error")
+        finally:
+            conn.close()
 
 
     def add_log(self, date, sympt_num, notes):
@@ -111,6 +115,8 @@ class SymptomsDB:
             print("IntegrityError")
         except OperationalError:
             print("Database error")
+        finally:
+            conn.close()
 
 
     def get_logs_id_by_date(self, date):
@@ -125,6 +131,8 @@ class SymptomsDB:
             print("IntegrityError")
         except OperationalError:
             print("Database error")
+        finally:
+            conn.close()
 
 
     def add_log_details(self, log_id, symptom, level):
@@ -138,6 +146,8 @@ class SymptomsDB:
             print("IntegrityError")
         except OperationalError:
             print("Database error")
+        finally:
+            conn.close()
 
 
     def get_logs_in_reverse_date_order(self):
@@ -152,6 +162,8 @@ class SymptomsDB:
             print("IntegrityError")
         except OperationalError:
             print("Database error")
+        finally:
+            conn.close()
 
 
     def delete_log(self, date):
@@ -165,6 +177,40 @@ class SymptomsDB:
             print("IntegrityError")
         except OperationalError:
             print("Database error")
+        finally:
+            conn.close()
+
+
+    def get_log_details_by_id(self, logs_id):
+        """Get logs details by id"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("SELECT * FROM log_details WHERE logs_id = ?", (logs_id,))
+            log_details_data = cursor.fetchall()
+            return log_details_data
+        except IntegrityError:
+            print("IntegrityError")
+        except OperationalError:
+            print("Database error")
+        finally:
+            conn.close()
+
+
+    def get_log_by_date(self, date):
+        """Get logs details by date"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("SELECT * FROM logs WHERE date = ?", (date,))
+            log_data = cursor.fetchall()
+            return log_data
+        except IntegrityError:
+            print("IntegrityError")
+        except OperationalError:
+            print("Database error")
+        finally:
+            conn.close()
 
 
 
