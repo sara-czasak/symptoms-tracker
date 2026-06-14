@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from menu_page import MenuFrame
+from view_entry_page import ViewEntryFrame
 from settings_page import SettingsFrame
 from translator import Translator
 from add_symptom_page import AddSymptomFrame
@@ -42,6 +43,7 @@ class App(ctk.CTk):
         self.add_symptom_page = AddSymptomFrame(self)
         self.add_log_page = AddLogFrame(self)
         self.view_logs_page = ViewLogsFrame(self)
+        self.view_entry_page = ViewEntryFrame(self)
 
         # CHECK IF BUTTONS SHOULD BE ENABLED
         self.menu_page.update_button_states()
@@ -65,6 +67,9 @@ class App(ctk.CTk):
 
         self.view_logs_page.destroy()
         self.view_logs_page = ViewLogsFrame(self)
+
+        self.view_entry_page.destroy()
+        self.view_entry_page = ViewEntryFrame(self)
 
 
     def show_menu(self):
@@ -122,6 +127,16 @@ class App(ctk.CTk):
 
     def hide_show_logs(self):
         self.view_logs_page.pack_forget()
+
+
+    def show_view_entry(self):
+        self.hide_show_logs()
+        self.refresh_screen()
+        self.view_entry_page.pack(padx=15, pady=15, fill="both", expand=True)
+
+
+    def hide_view_entry(self):
+        self.view_entry_page.pack_forget()
 
 
 app = App()

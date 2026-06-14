@@ -154,5 +154,18 @@ class SymptomsDB:
             print("Database error")
 
 
+    def delete_log(self, date):
+        """Delete a log from the database"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("DELETE FROM logs WHERE date = ?", (date,))
+            conn.commit()
+        except IntegrityError:
+            print("IntegrityError")
+        except OperationalError:
+            print("Database error")
+
+
 
 

@@ -64,6 +64,7 @@ class ViewLogsFrame(ctk.CTkFrame):
             text=self.parent.translator.dictionary["confirm"],
             font=self.parent.button_font,
             width=100,
+            command=self.choose_option,
         )
 
         self.select_opt.grid(row=0, column=1, padx=10)
@@ -95,7 +96,31 @@ class ViewLogsFrame(ctk.CTkFrame):
             print("Error: ", e)
 
 
+    def choose_option(self):
+        opt = self.option_menu.get()
+        if opt == self.parent.translator.dictionary["view"]:
+            self.parent.show_view_entry()
+        elif opt == self.parent.translator.dictionary["edit"]:
+            print("EDIT")
+        elif opt == self.parent.translator.dictionary["delete"]:
+            self.delete_log()
+
+
+    def delete_log(self):
+        db = SymptomsDB()
+        try:
+            db.delete_log(self.listbox.get())
+            self.parent.refresh_screen()
+            if (self.listbox.size() - 1) == 0:
+                self.parent.show_menu()
+            else:
+                self.parent.show_view_logs()
+        except Exception as e:
+            print("Error: ", e)
+
+
     def back_to_menu(self):
         """Reset fields and go back to menu"""
         self.parent.hide_show_logs()
         self.parent.show_menu()
+

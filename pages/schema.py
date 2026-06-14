@@ -16,7 +16,7 @@ id INTEGER PRIMARY KEY,
 logs_id INTEGER NOT NULL,
 symptom TEXT NOT NULL,
 level TEXT NOT NULL,
-FOREIGN KEY (logs_id) REFERENCES logs(id)
+FOREIGN KEY (logs_id) REFERENCES logs(id) ON DELETE CASCADE
 )
 """
 
