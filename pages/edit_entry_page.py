@@ -11,11 +11,17 @@ class EditLogFrame(ctk.CTkFrame):
         self.page_title = None
         self.back_to_logs_btn = None
 
-        self.layout()
+        # WIDGET GROUP
+        self.data_widgets = None
+
+        # DATA TO VIEW
+        self.log_data = {}
+        self.log_id = None
 
 
     def layout(self):
         """Create UI"""
+        self.get_log_and_details_ids()
         self.page_title = ctk.CTkLabel(
             self,
             text=self.parent.translator.dictionary["edit_log_title"],
@@ -32,6 +38,18 @@ class EditLogFrame(ctk.CTkFrame):
             width=50,
         )
         self.back_to_logs_btn.pack(padx=5, pady=35, side="bottom")
+
+
+        # ADD UI ELEMENTS FOR EACH ITEM. SAME AS ADD LOG BUT PREFILL VALS
+
+
+    def get_log_and_details_ids(self):
+        db = SymptomsDB()
+        try:
+            self.log_id = db.get_logs_id_by_date(self.log_data["Date"])[0]
+            print(db.get_log_details_by_id(self.log_id))
+        except Exception as e:
+            print("Error: ", e)
 
 
     def back_to_view_logs(self):
