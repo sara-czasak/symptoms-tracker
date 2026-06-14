@@ -188,7 +188,7 @@ class EditLogFrame(ctk.CTkFrame):
             text=self.parent.translator.dictionary["save_changes"],
             command=self.get_data_and_save,
         )
-        self.save_changes_btn.pack(padx=5, pady=5)
+        self.save_changes_btn.pack(padx=5, pady=5, fill="both")
 
 
     def get_log_and_details_ids(self):

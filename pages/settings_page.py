@@ -33,7 +33,7 @@ class SettingsFrame(ctk.CTkFrame):
             text=self.parent.translator.dictionary["see_symptoms"],
             font=self.parent.button_font,
         )
-        self.symptoms_list_btn.pack(padx=5, pady=5)
+        self.symptoms_list_btn.pack(padx=5, pady=5, fill="both")
 
         self.back_to_menu_btn = ctk.CTkButton(
             self,
@@ -50,21 +50,21 @@ class SettingsFrame(ctk.CTkFrame):
             text=self.parent.translator.dictionary["export_btn"],
             font=self.parent.button_font,
         )
-        self.export_btn.pack(padx=5, pady=5)
+        self.export_btn.pack(padx=5, pady=5, fill="both")
 
         self.lang_btn = ctk.CTkButton(
             self,
             text=self.parent.translator.dictionary["lang_btn"],
             font=self.parent.button_font,
         )
-        self.lang_btn.pack(padx=5, pady=5)
+        self.lang_btn.pack(padx=5, pady=5, fill="both")
 
         self.theme_btn = ctk.CTkButton(
             self,
             text=self.parent.translator.dictionary["theme_btn"],
             font=self.parent.button_font,
         )
-        self.theme_btn.pack(padx=5, pady=5)
+        self.theme_btn.pack(padx=5, pady=5, fill="both")
 
 
 

@@ -173,7 +173,7 @@ class AddLogFrame(ctk.CTkFrame):
             font=self.parent.button_font,
             command=self.get_data_and_save,
         )
-        self.add_log_btn.pack(padx=5, pady=5)
+        self.add_log_btn.pack(padx=5, pady=5, fill="both")
 
 
     def back_to_menu(self):
@@ -253,8 +253,6 @@ class AddLogFrame(ctk.CTkFrame):
             )
             log_id = db.get_logs_id_by_date(self.log_data['date'])[0]
             for k, v in self.log_details_data.items():
-                print("k", k)
-                print("v", v)
                 db.add_log_details(log_id, k.replace(":", ""), v[0], v[1])
         except Exception as e:
             print("Error: ", e)

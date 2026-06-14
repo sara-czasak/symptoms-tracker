@@ -16,7 +16,7 @@ langs = [
             "view_entries_btn": "SEE ALL ENTRIES",
             "settings_btn": "SETTINGS",
             "about_btn": "ABOUT",
-            "add_symptoms_btn": "ADD SYMPTOMS\nTO TRACK",
+            "add_symptoms_btn": "ADD SYMPTOMS TO TRACK",
             "exit_btn": "EXIT",
 
             # SETTINGS WIDGETS
