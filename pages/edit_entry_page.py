@@ -97,24 +97,17 @@ class EditLogFrame(ctk.CTkFrame):
                 font=self.parent.label_font,
             )
             check_label.grid(row=0, column=0, sticky="w", padx=5)
+            checkbox = ctk.CTkCheckBox(
+                check_frm,
+                text="",
+            )
 
             for j in self.log_details:
                 if i[1].lower() == j[2].lower() and j[4] == 'yes_no':
-                    checkbox = ctk.CTkCheckBox(
-                        check_frm,
-                        text="",
-                    )
                     checkbox.select()
-                    checkbox.grid(row=0, column=1, sticky="w")
 
-                elif i[1].lower() != j[2].lower() and j[4] == 'yes_no':
-                    checkbox = ctk.CTkCheckBox(
-                        check_frm,
-                        text="",
-                    )
-                    checkbox.grid(row=0, column=1, sticky="w")
-
-                    check_frm.pack(fill="both", expand=True, pady=5)
+            checkbox.grid(row=0, column=1, sticky="w")
+            check_frm.pack(fill="both", expand=True, pady=5)
             self.checkbox_fields.append(check_frm)
 
         for i in self.scale_symptoms_dict.items():
@@ -130,24 +123,18 @@ class EditLogFrame(ctk.CTkFrame):
                 font=self.parent.label_font,
             )
             symptom_name.grid(row=0, column=0, padx=5)
+
+            scale = ctk.CTkOptionMenu(
+                scale_frm,
+                values=self.scale_values,
+            )
+
             for j in self.log_details:
                 if i[1].lower() == j[2].lower() and j[4] == 'scale':
-                    scale = ctk.CTkOptionMenu(
-                        scale_frm,
-                        values=self.scale_values,
-                    )
                     scale.set(j[3])
-                    scale.grid(row=0, column=1, sticky="e")
 
-                    scale_frm.pack(fill="both", expand=True, pady=5)
-                elif i[1].lower() != j[2].lower() and j[4] == 'scale':
-                    scale = ctk.CTkOptionMenu(
-                        scale_frm,
-                        values=self.scale_values,
-                    )
-                    scale.grid(row=0, column=1, sticky="e")
-
-                    scale_frm.pack(fill="both", expand=True, pady=5)
+            scale.grid(row=0, column=1, sticky="e")
+            scale_frm.pack(fill="both", expand=True, pady=5)
             self.scale_fields.append(scale_frm)
 
         for i in self.text_symptoms_dict.items():
@@ -155,7 +142,6 @@ class EditLogFrame(ctk.CTkFrame):
                 self.scroll_screen,
             )
             text_frm.grid_columnconfigure(1, weight=1)
-            text_frm.pack(fill="both", expand=True, pady=5)
 
             symptom_name = ctk.CTkLabel(
                 text_frm,
@@ -164,19 +150,16 @@ class EditLogFrame(ctk.CTkFrame):
             )
             symptom_name.grid(row=0, column=0, padx=5)
 
+            symptom_text = ctk.CTkEntry(
+                text_frm,
+            )
+
             for j in self.log_details:
                 if i[1].lower() == j[2].lower() and j[4] == 'text':
-                    symptom_text = ctk.CTkEntry(
-                        text_frm,
-                    )
                     symptom_text.insert("end", j[3])
-                    symptom_text.grid(row=0, column=1, sticky='e')
-                elif i[1].lower() != j[2].lower() and j[4] == 'text':
-                    symptom_text = ctk.CTkEntry(
-                        text_frm,
-                    )
-                    symptom_text.grid(row=0, column=1, sticky='e')
 
+            symptom_text.grid(row=0, column=1, sticky='e')
+            text_frm.pack(fill="both", expand=True, pady=5)
             self.text_fields.append(text_frm)
 
         self.notes_label = ctk.CTkLabel(
@@ -310,6 +293,7 @@ class EditLogFrame(ctk.CTkFrame):
         """Save log data to database"""
         db = SymptomsDB()
         try:
+            db.delete_log(self.log_id)
             db.add_log(
                 date=self.log_to_save['date'],
                 sympt_num=self.log_to_save['symptoms'],
