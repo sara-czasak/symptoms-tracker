@@ -54,7 +54,7 @@ class AddLogFrame(ctk.CTkFrame):
             command=self.back_to_menu,
             width=50,
         )
-        self.back_to_menu_btn.pack(padx=5, pady=35, side="bottom")
+        self.back_to_menu_btn.pack(padx=5, pady=5, side="bottom")
 
         self.scroll_symptoms = ctk.CTkScrollableFrame(
             self
@@ -168,7 +168,7 @@ class AddLogFrame(ctk.CTkFrame):
         self.notes_entry.pack(padx=5, pady=5, fill="both")
 
         self.add_log_btn = ctk.CTkButton(
-            self.scroll_symptoms,
+            self,
             text=self.parent.translator.dictionary["save"],
             font=self.parent.button_font,
             command=self.get_data_and_save,

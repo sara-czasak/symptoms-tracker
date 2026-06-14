@@ -47,7 +47,8 @@ langs = [
             "opt": "OPTIONS",
             "confirm": "SELECT",
 
-            # VIEW LOG DETAILS
+            # EDIT LOG DETAILS
+            "save_changes": "SAVE CHANGES",
         }
     }
 ]

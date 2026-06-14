@@ -135,6 +135,22 @@ class SymptomsDB:
             conn.close()
 
 
+    def get_log_by_logs_id(self, log_id):
+        """Get logs id by log_id"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("SELECT * FROM logs WHERE log_id = ?", (log_id,))
+            log = cursor.fetchall()
+            return log
+        except IntegrityError:
+            print("IntegrityError")
+        except OperationalError:
+            print("Database error")
+        finally:
+            conn.close()
+
+
     def add_log_details(self, log_id, symptom, level):
         """Add a log details to the database"""
         conn = self.get_connection()
