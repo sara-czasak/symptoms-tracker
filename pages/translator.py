@@ -7,6 +7,7 @@ langs = [
             "add_symptom_title": "~ ADD SYMPTOM ~",
             "add_log_title": "~ ADD LOG ~",
             "view_all_title": "~ ALL LOGS ~",
+            "view_details": "~ LOG DETAILS ~",
 
             # MENU WIDGETS
             "add_log": "NEW LOG",
@@ -43,7 +44,9 @@ langs = [
             "edit": "EDIT LOG",
             "delete": "DELETE LOG",
             "opt": "OPTIONS",
-            "confirm": "SELECT"
+            "confirm": "SELECT",
+
+            # VIEW LOG DETAILS
         }
     }
 ]

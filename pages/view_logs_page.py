@@ -82,6 +82,7 @@ class ViewLogsFrame(ctk.CTkFrame):
 
 
     def get_logs(self):
+        """Get all logs"""
         db = SymptomsDB()
         try:
             logs = db.get_logs_in_reverse_date_order()
@@ -97,6 +98,7 @@ class ViewLogsFrame(ctk.CTkFrame):
 
 
     def choose_option(self):
+        """Check which option is selected and redirect accordingly"""
         opt = self.option_menu.get()
         if opt == self.parent.translator.dictionary["view"]:
             self.parent.show_view_entry()
@@ -107,16 +109,20 @@ class ViewLogsFrame(ctk.CTkFrame):
 
 
     def delete_log(self):
+        """Delete selected log"""
         db = SymptomsDB()
-        try:
-            db.delete_log(self.listbox.get())
-            self.parent.refresh_screen()
-            if (self.listbox.size() - 1) == 0:
-                self.parent.show_menu()
-            else:
-                self.parent.show_view_logs()
-        except Exception as e:
-            print("Error: ", e)
+        if self.listbox.curselection():
+            try:
+                db.delete_log(self.listbox.get())
+                self.parent.refresh_screen()
+                if (self.listbox.size() - 1) == 0:
+                    self.parent.show_menu()
+                else:
+                    self.parent.show_view_logs()
+            except Exception as e:
+                print("Error: ", e)
+        else:
+            pass
 
 
     def back_to_menu(self):
