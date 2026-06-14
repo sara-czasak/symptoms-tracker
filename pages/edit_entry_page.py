@@ -33,6 +33,8 @@ class EditLogFrame(ctk.CTkFrame):
         self.log_data = {}
         self.log_details = None
         self.log_id = None
+        self.log_details_to_save = {}
+        self.log_to_save = {}
 
 
     def layout(self):
@@ -201,6 +203,7 @@ class EditLogFrame(ctk.CTkFrame):
             self,
             font=self.parent.button_font,
             text=self.parent.translator.dictionary["save_changes"],
+            command=self.get_data_and_save,
         )
         self.save_changes_btn.pack(padx=5, pady=5)
 
@@ -240,3 +243,86 @@ class EditLogFrame(ctk.CTkFrame):
         """Go back to view logs page"""
         self.parent.hide_edit_log()
         self.parent.show_view_logs()
+
+
+    def reset_fields(self):
+        """Reset fields"""
+        for i in self.checkbox_fields:
+            for j in i.winfo_children():
+                if isinstance(j, ctk.CTkCheckBox):
+                    j.deselect()
+
+        for i in self.scale_fields:
+            for j in i.winfo_children():
+                if isinstance(j, ctk.CTkOptionMenu):
+                    j.set(self.scale_values[0])
+
+        for i in self.text_fields:
+            for j in i.winfo_children():
+                if isinstance(j, ctk.CTkEntry):
+                    j.delete(0, "end")
+
+        self.notes_entry.delete("1.0", "end")
+
+
+    def get_data_and_save(self):
+        self.get_data()
+        self.save_data()
+        self.reset_fields()
+        self.parent.refresh_screen()
+        self.back_to_view_logs()
+
+
+    def get_data(self):
+        """Get data from log and sort by log and details"""
+        self.log_to_save['date'] = self.date_entry.get()
+        self.log_to_save['notes'] = self.notes_entry.get("1.0", 'end').strip()
+        symptoms = 0
+        label = None
+        for i in self.checkbox_fields:
+            for j in i.winfo_children():
+                if isinstance(j, ctk.CTkLabel):
+                    label = j.cget("text")
+                if isinstance(j, ctk.CTkCheckBox) and j.get() == 1:
+                    symptoms += 1
+                    self.log_details_to_save[label] = [self.parent.translator.dictionary["yes"], "yes_no"]
+                    label = None
+        for i in self.scale_fields:
+            for j in i.winfo_children():
+                if isinstance(j, ctk.CTkLabel):
+                    label = j.cget("text")
+                if isinstance(j, ctk.CTkOptionMenu) and j.get() != "0":
+                    symptoms += 1
+                    self.log_details_to_save[label] = [j.get(), "scale"]
+                    label = None
+        for i in self.text_fields:
+            for j in i.winfo_children():
+                if isinstance(j, ctk.CTkLabel):
+                    label = j.cget("text")
+                if isinstance(j, ctk.CTkEntry) and j.get() != "":
+                    symptoms += 1
+                    self.log_details_to_save[label] = [j.get(), "text"]
+                    label = None
+        self.log_data['symptoms'] = symptoms
+
+
+    def save_data(self):
+        """Save log data to database"""
+        db = SymptomsDB()
+        try:
+            db.add_log(
+                date=self.log_to_save['date'],
+                sympt_num=self.log_to_save['symptoms'],
+                notes=self.log_data['notes'],
+            )
+            log_id = db.get_logs_id_by_date(self.log_to_save['date'])[0]
+            for k, v in self.log_details_to_save.items():
+                print("k", k)
+                print("v", v)
+                db.add_log_details(log_id, k.replace(":", ""), v[0], v[1])
+        except Exception as e:
+            print("Error: ", e)
+
+
+        # self.log_details_to_save = {}
+        # self.log_to_save = {}

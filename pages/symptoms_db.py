@@ -214,7 +214,7 @@ class SymptomsDB:
 
 
     def get_log_by_date(self, date):
-        """Get logs details by date"""
+        """Get log details by date"""
         conn = self.get_connection()
         cursor = conn.cursor()
         try:
@@ -229,6 +229,34 @@ class SymptomsDB:
             conn.close()
 
 
+    def edit_log(self, date, num, notes, log_id):
+        """Save edited log"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("UPDATE logs SET date = ?, sympt_num = ?, notes = ? WHERE id = ?", (date, num, notes, log_id))
+            conn.commit()
+        except IntegrityError:
+            print("IntegrityError")
+        except OperationalError:
+            print("Database error")
+        finally:
+            conn.close()
+
+
+    def edit_log_details(self, logs_id, symptom, level, track_type):
+        """Save edited log details"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("UPDATE log_details SET symptom = ?, level = ?, track_type = ? WHERE logs_id = ?", (symptom, level, track_type, logs_id))
+            conn.commit()
+        except IntegrityError:
+            print("IntegrityError")
+        except OperationalError:
+            print("Database error")
+        finally:
+            conn.close()
 
 
 
