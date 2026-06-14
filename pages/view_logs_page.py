@@ -22,7 +22,6 @@ class ViewLogsFrame(ctk.CTkFrame):
             self.parent.translator.dictionary["edit"],
             self.parent.translator.dictionary["delete"],
         ]
-        self.log_view_data = {}
 
         self.layout()
 
@@ -102,7 +101,7 @@ class ViewLogsFrame(ctk.CTkFrame):
         """Check which option is selected and redirect accordingly"""
         opt = self.option_menu.get()
         if opt == self.parent.translator.dictionary["view"]:
-            self.view_log()
+            self.parent.show_view_entry()
         elif opt == self.parent.translator.dictionary["edit"]:
             print("EDIT")
         elif opt == self.parent.translator.dictionary["delete"]:
@@ -111,20 +110,22 @@ class ViewLogsFrame(ctk.CTkFrame):
 
     def view_log(self):
         db = SymptomsDB()
+        log_view_data = {}
         if self.listbox.get() is not None:
             try:
                 log_id = db.get_logs_id_by_date(self.listbox.get())[0]
                 log_details = db.get_log_details_by_id(log_id)
                 log = db.get_log_by_date(self.listbox.get())[0]
-                self.log_view_data["date"] = log[1]
-                self.log_view_data["notes"] = log[3]
+                log_view_data["date"] = log[1]
+                log_view_data["notes"] = log[3]
                 for symptom in log_details:
-                    print("symptom: ", symptom)
-                    self.log_view_data[symptom[2]] = symptom[3]
+                    log_view_data[symptom[2]] = symptom[3]
+                return log_view_data
             except Exception as e:
                 print("Error: ", e)
         else:
             print("MAKE A SELECTION")
+            return log_view_data
 
 
     def delete_log(self):

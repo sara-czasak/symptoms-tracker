@@ -9,6 +9,13 @@ class ViewEntryFrame(ctk.CTkFrame):
         # WIDGETS
         self.page_title = None
         self.back_to_logs_btn = None
+        self.scroll_screen = None
+
+        # WIDGET GROUP
+        self.data_widgets = None
+
+        # DATA TO VIEW
+        self.log_data = {}
 
         self.layout()
 
@@ -31,6 +38,12 @@ class ViewEntryFrame(ctk.CTkFrame):
             width=50,
         )
         self.back_to_logs_btn.pack(padx=5, pady=35, side="bottom")
+
+        self.scroll_screen = ctk.CTkScrollableFrame(
+            self,
+        )
+
+        self.scroll_screen.pack(fill="both", expand=True)
 
 
     def back_to_view_logs(self):
