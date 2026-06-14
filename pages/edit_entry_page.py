@@ -227,31 +227,9 @@ class EditLogFrame(ctk.CTkFrame):
         self.parent.hide_edit_log()
         self.parent.show_view_logs()
 
-
-    def reset_fields(self):
-        """Reset fields"""
-        for i in self.checkbox_fields:
-            for j in i.winfo_children():
-                if isinstance(j, ctk.CTkCheckBox):
-                    j.deselect()
-
-        for i in self.scale_fields:
-            for j in i.winfo_children():
-                if isinstance(j, ctk.CTkOptionMenu):
-                    j.set(self.scale_values[0])
-
-        for i in self.text_fields:
-            for j in i.winfo_children():
-                if isinstance(j, ctk.CTkEntry):
-                    j.delete(0, "end")
-
-        self.notes_entry.delete("1.0", "end")
-
-
     def get_data_and_save(self):
         self.get_data()
         self.save_data()
-        self.reset_fields()
         self.parent.refresh_screen()
         self.back_to_view_logs()
 
@@ -286,27 +264,24 @@ class EditLogFrame(ctk.CTkFrame):
                     symptoms += 1
                     self.log_details_to_save[label] = [j.get(), "text"]
                     label = None
-        self.log_data['symptoms'] = symptoms
+        self.log_to_save['symptoms'] = symptoms
 
 
     def save_data(self):
         """Save log data to database"""
         db = SymptomsDB()
         try:
-            db.delete_log(self.log_id)
+            db.delete_log(self.log_to_save['date'])
+            notes = ""
+            if self.log_to_save['notes'] != "":
+                notes = self.log_to_save['notes']
             db.add_log(
                 date=self.log_to_save['date'],
                 sympt_num=self.log_to_save['symptoms'],
-                notes=self.log_data['notes'],
+                notes=notes,
             )
             log_id = db.get_logs_id_by_date(self.log_to_save['date'])[0]
             for k, v in self.log_details_to_save.items():
-                print("k", k)
-                print("v", v)
                 db.add_log_details(log_id, k.replace(":", ""), v[0], v[1])
         except Exception as e:
-            print("Error: ", e)
-
-
-        # self.log_details_to_save = {}
-        # self.log_to_save = {}
+            print("Error save data: ", e)

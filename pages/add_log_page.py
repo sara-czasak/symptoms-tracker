@@ -179,7 +179,6 @@ class AddLogFrame(ctk.CTkFrame):
     def back_to_menu(self):
         """Reset fields and go back to menu"""
         self.parent.hide_add_log()
-        self.reset_fields()
         self.parent.show_menu()
 
 
@@ -204,30 +203,9 @@ class AddLogFrame(ctk.CTkFrame):
             print("Error: ", e)
 
 
-    def reset_fields(self):
-        """Reset fields"""
-        for i in self.checkbox_fields:
-            for j in i.winfo_children():
-                if isinstance(j, ctk.CTkCheckBox):
-                    j.deselect()
-
-        for i in self.scale_fields:
-            for j in i.winfo_children():
-                if isinstance(j, ctk.CTkOptionMenu):
-                    j.set(self.scale_values[0])
-
-        for i in self.text_fields:
-            for j in i.winfo_children():
-                if isinstance(j, ctk.CTkEntry):
-                    j.delete(0, "end")
-
-        self.notes_entry.delete("1.0", "end")
-
-
     def get_data_and_save(self):
         self.get_data()
         self.save_data()
-        self.reset_fields()
         self.back_to_menu()
 
 
