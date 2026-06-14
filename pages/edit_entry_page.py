@@ -38,7 +38,7 @@ class EditLogFrame(ctk.CTkFrame):
     def layout(self):
         """Create UI"""
         self.get_symptoms()
-        print(self.checkbox_symptoms_dict)
+        print("scale: ", self.scale_symptoms_dict)
 
         self.page_title = ctk.CTkLabel(
             self,
@@ -65,7 +65,7 @@ class EditLogFrame(ctk.CTkFrame):
         self.date_frm = ctk.CTkFrame(
             self.scroll_screen,
         )
-        self.date_frm.pack(fill="both", expand=True)
+        self.date_frm.pack(fill="both", expand=True, pady=5)
         self.date_frm.grid_columnconfigure(1, weight=1)
 
         self.date_label = ctk.CTkLabel(
@@ -89,7 +89,7 @@ class EditLogFrame(ctk.CTkFrame):
                 self.scroll_screen,
             )
             check_frm.grid_columnconfigure(1, weight=1)
-            check_frm.pack(fill="both", expand=True)
+
             check_label = ctk.CTkLabel(
                 check_frm,
                 text=f"{i[1].capitalize()}:",
@@ -107,7 +107,6 @@ class EditLogFrame(ctk.CTkFrame):
                     checkbox.grid(row=0, column=1, sticky="w")
 
                     self.checkbox_fields.append(check_frm)
-                    check_frm.pack(fill="both", expand=True, pady=5)
 
                 elif i[1].lower() != j[2].lower() and j[4] == 'yes_no':
                     checkbox = ctk.CTkCheckBox(
@@ -118,6 +117,41 @@ class EditLogFrame(ctk.CTkFrame):
 
                     self.checkbox_fields.append(check_frm)
                     check_frm.pack(fill="both", expand=True, pady=5)
+            self.checkbox_fields.append(check_frm)
+
+        for i in self.scale_symptoms_dict.items():
+            scale_frm = ctk.CTkFrame(
+                self.scroll_screen,
+            )
+            scale_frm.grid_columnconfigure(1, weight=1)
+            scale_frm.pack(fill="both", expand=True, pady=5)
+
+            symptom_name = ctk.CTkLabel(
+                scale_frm,
+                text=f"{i[1].capitalize()}:",
+                font=self.parent.label_font,
+            )
+            symptom_name.grid(row=0, column=0, padx=5)
+            for j in self.log_details:
+                if i[1].lower() == j[2].lower() and j[4] == 'scale':
+                    scale = ctk.CTkOptionMenu(
+                        scale_frm,
+                        values=self.scale_values,
+                    )
+                    scale.set(j[3])
+                    scale.grid(row=0, column=1, sticky="e")
+
+                    self.scale_fields.append(scale_frm)
+                    scale_frm.pack(fill="both", expand=True, pady=5)
+                elif i[1].lower() != j[2].lower() and j[4] == 'scale':
+                    scale = ctk.CTkOptionMenu(
+                        scale_frm,
+                        values=self.scale_values,
+                    )
+                    scale.grid(row=0, column=1, sticky="e")
+
+                    self.scale_fields.append(scale_frm)
+                    scale_frm.pack(fill="both", expand=True, pady=5)
 
 
         self.notes_label = ctk.CTkLabel(
