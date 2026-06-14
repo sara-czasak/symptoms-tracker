@@ -116,10 +116,11 @@ class ViewLogsFrame(ctk.CTkFrame):
                 log_id = db.get_logs_id_by_date(self.listbox.get())[0]
                 log_details = db.get_log_details_by_id(log_id)
                 log = db.get_log_by_date(self.listbox.get())[0]
-                log_view_data["date"] = log[1]
-                log_view_data["notes"] = log[3]
+                log_view_data["Date"] = log[1]
                 for symptom in log_details:
                     log_view_data[symptom[2]] = symptom[3]
+                if log[3] != "":
+                    log_view_data["Notes"] = log[3].capitalize()
                 return log_view_data
             except Exception as e:
                 print("Error: ", e)

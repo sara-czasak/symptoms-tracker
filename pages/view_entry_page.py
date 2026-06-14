@@ -17,8 +17,6 @@ class ViewEntryFrame(ctk.CTkFrame):
         # DATA TO VIEW
         self.log_data = {}
 
-        self.layout()
-
 
     def layout(self):
         """Create UI"""
@@ -42,8 +40,25 @@ class ViewEntryFrame(ctk.CTkFrame):
         self.scroll_screen = ctk.CTkScrollableFrame(
             self,
         )
-
         self.scroll_screen.pack(fill="both", expand=True)
+
+        if len(self.log_data) > 0:
+            print(self.log_data)
+            for k, v in self.log_data.items():
+                if v.isnumeric():
+                    label = ctk.CTkLabel(
+                        self.scroll_screen,
+                        text=f"{k}: {v}/5",
+                        font=self.parent.label_font,
+                    )
+                    label.pack(padx=10, pady=10)
+                else:
+                    label = ctk.CTkLabel(
+                        self.scroll_screen,
+                        text=f"{k}: {v}",
+                        font=self.parent.label_font,
+                    )
+                    label.pack(padx=10, pady=10)
 
 
     def back_to_view_logs(self):

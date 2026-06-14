@@ -132,6 +132,7 @@ class App(ctk.CTk):
     def show_view_entry(self):
         self.hide_show_logs()
         self.view_entry_page.log_data = self.view_logs_page.view_log()
+        self.view_entry_page.layout()
         self.view_entry_page.pack(padx=15, pady=15, fill="both", expand=True)
 
 
