@@ -35,6 +35,7 @@ CREATE_SYMPTOMS_TABLE = """
 CREATE TABLE IF NOT EXISTS symptoms (
 id INTEGER PRIMARY KEY,
 symptom TEXT NOT NULL UNIQUE,
-track_type TEXT NOT NULL
+track_type TEXT NOT NULL,
+UNIQUE(symptom, track_type)
 )
 """

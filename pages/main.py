@@ -7,6 +7,7 @@ from add_symptom_page import AddSymptomFrame
 from add_log_page import AddLogFrame
 from view_logs_page import ViewLogsFrame
 from edit_entry_page import EditLogFrame
+from symptom_list_page import SymptomListFrame
 from PIL import Image
 
 
@@ -46,6 +47,7 @@ class App(ctk.CTk):
         self.view_logs_page = ViewLogsFrame(self)
         self.view_entry_page = ViewEntryFrame(self)
         self.edit_log_page = EditLogFrame(self)
+        self.symptom_list_page = SymptomListFrame(self)
 
         # CHECK IF BUTTONS SHOULD BE ENABLED
         self.menu_page.update_button_states()
@@ -75,6 +77,9 @@ class App(ctk.CTk):
 
         self.edit_log_page.destroy()
         self.edit_log_page = EditLogFrame(self)
+
+        self.symptom_list_page.destroy()
+        self.symptom_list_page = SymptomListFrame(self)
 
 
     def show_menu(self):
@@ -157,6 +162,15 @@ class App(ctk.CTk):
     def hide_edit_log(self):
         self.refresh_screen()
         self.edit_log_page.pack_forget()
+
+
+    def show_symptoms_list_page(self):
+        self.settings_page.pack_forget()
+        self.symptom_list_page.pack(padx=15, pady=15, fill="both", expand=True)
+
+
+    def hide_symptoms_list_page(self):
+        self.symptom_list_page.pack_forget()
 
 
 app = App()

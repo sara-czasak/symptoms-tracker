@@ -32,6 +32,7 @@ class SettingsFrame(ctk.CTkFrame):
             self,
             text=self.parent.translator.dictionary["see_symptoms"],
             font=self.parent.button_font,
+            command=self.parent.show_symptoms_list_page,
         )
         self.symptoms_list_btn.pack(padx=5, pady=5, fill="both")
 
