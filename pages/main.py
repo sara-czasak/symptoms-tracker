@@ -54,6 +54,7 @@ class App(ctk.CTk):
 
         self.data_manager = DataManager()
         self.data_manager.create_dir_if_not_exists()
+        print(self.data_manager.dir_path)
 
         # CHECK IF BUTTONS SHOULD BE ENABLED
         self.menu_page.update_button_states()
