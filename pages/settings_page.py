@@ -46,12 +46,11 @@ class SettingsFrame(ctk.CTkFrame):
         )
         self.back_to_menu_btn.pack(padx=5, pady=35, side="bottom")
 
-
-        # EXPORT COPIES THE DIR WITH THE USER DATA FILES (DIARY WORD FILE AND EXCEL SYMPTOM FILE)
         self.export_btn = ctk.CTkButton(
             self,
             text=self.parent.translator.dictionary["export_btn"],
             font=self.parent.button_font,
+            command=self.export_data
         )
         self.export_btn.pack(padx=5, pady=5, fill="both")
 
@@ -68,6 +67,11 @@ class SettingsFrame(ctk.CTkFrame):
             font=self.parent.button_font,
         )
         self.theme_btn.pack(padx=5, pady=5, fill="both")
+
+
+    def export_data(self):
+        self.parent.data_manager.get_current_data_to_save()
+        print("DATA SAVED")
 
 
 

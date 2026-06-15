@@ -16,6 +16,7 @@ class DataManager:
         self.log_detail_data = {}
 
 
+    # CHANGE THIS TO GET DIR PATH FROM USER
     def create_dir_if_not_exists(self):
         """Check if directory exists and if not, create it"""
         if os.path.isdir("./user_data"):

@@ -283,6 +283,6 @@ class EditLogFrame(ctk.CTkFrame):
             log_id = db.get_logs_id_by_date(self.log_to_save['date'])[0]
             for k, v in self.log_details_to_save.items():
                 db.add_log_details(log_id, k.replace(":", ""), v[0], v[1])
-            self.parent.data_manager.get_current_data_to_save()
+
         except Exception as e:
             print("Error save data: ", e)

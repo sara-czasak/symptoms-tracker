@@ -41,6 +41,9 @@ class App(ctk.CTk):
         self.back_btn_font = ("Helvetica", 25)
         self.label_font = ("Helvetica", 15)
 
+        self.data_manager = DataManager()
+        self.data_manager.create_dir_if_not_exists()
+
         # PAGES
         self.menu_page = MenuFrame(self)
         self.settings_page = SettingsFrame(self)
@@ -51,9 +54,6 @@ class App(ctk.CTk):
         self.edit_log_page = EditLogFrame(self)
         self.symptom_list_page = SymptomListFrame(self)
         self.edit_symptoms_page = EditSymptomFrame(self)
-
-        self.data_manager = DataManager()
-        self.data_manager.create_dir_if_not_exists()
 
         # CHECK IF BUTTONS SHOULD BE ENABLED
         self.menu_page.update_button_states()
