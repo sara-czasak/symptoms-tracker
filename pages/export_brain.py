@@ -13,6 +13,7 @@ class DataManager:
         self.symptom_path = None
 
         self.log_data = {}
+        self.log_detail_data = {}
 
 
     def create_dir_if_not_exists(self):
@@ -42,10 +43,7 @@ class DataManager:
         try:
             logs = db.get_logs_in_reverse_date_order()
             for log in logs:
-                if log[3] != "":
-                    self.log_data[log[1]] = log[3]
-                else:
-                    pass
+                self.log_data[log[0]] = [log[1], log[3]]
             self.save_diary_data()
         except Exception as e:
             print("Error: ", e)
@@ -58,16 +56,43 @@ class DataManager:
             diary = Document()
             diary.save(self.diary_path)
             for k, v in self.log_data.items():
-                diary.add_heading(f"~ Date: {k} ~\n", level=1)
-                paragraph = diary.add_paragraph()
-                run = paragraph.add_run(f"\t{v}")
-                run.font_size = Pt(12)
+                if v[1] != "":
+                    diary.add_heading(f"~ Date: {v[0]} ~\n", level=1)
+                    paragraph = diary.add_paragraph()
+                    run = paragraph.add_run(f"\t{v[1]}")
+                    run.font_size = Pt(12)
             diary.save(self.diary_path)
         except Exception as e:
             print("Error: ", e)
+
+
+    def save_symptoms_data(self):
+        db = SymptomsDB()
+        for key in self.log_data.keys():
+            try:
+                data = db.get_log_details_by_id(key)
+                for log in data:
+                    if log[4] == 'scale':
+                        self.log_detail_data[log[0]] = [{
+                            "date": self.log_data[key][0],
+                            "name": log[2],
+                            "level": f"{log[3]}/5"}
+                        ]
+                    else:
+                        self.log_detail_data[log[0]] = [{
+                            "date": self.log_data[key][0],
+                            "name": log[2],
+                            "level": log[3]}
+                        ]
+
+            except Exception as e:
+                print("Error: ", e)
+        for i in self.log_detail_data.values():
+            print(i)
 
 
 if __name__ == "__main__":
     test = DataManager()
     test.create_dir_if_not_exists()
     test.get_current_data_to_save()
+    test.save_symptoms_data()

@@ -75,8 +75,8 @@ class ViewLogsFrame(ctk.CTkFrame):
         )
 
         self.get_logs()
-        for i in self.log_data:
-            self.listbox.insert('end', i['date'])
+        for index, i in enumerate(self.log_data):
+            self.listbox.insert(index, i['date'])
 
         self.listbox.pack(expand=True, fill="both")
 
