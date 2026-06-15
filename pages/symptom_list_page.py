@@ -75,7 +75,7 @@ class SymptomListFrame(ctk.CTkFrame):
         self.listbox.pack(padx=5, pady=5, fill="both", expand=True)
 
         for k, v in self.symptoms_dict.items():
-            self.listbox.insert("end", f"{k.title()}: {v}")
+            self.listbox.insert("end", v)
 
 
     def get_symptoms(self):
@@ -84,7 +84,7 @@ class SymptomListFrame(ctk.CTkFrame):
         try:
             symptoms = db.get_symptoms()
             for i in symptoms:
-                self.symptoms_dict[i[1]] = i[2]
+                self.symptoms_dict[i[0]] = f"{i[1]}: {i[2]}"
         except Exception as e:
             print("Error: ", e)
 
@@ -92,14 +92,29 @@ class SymptomListFrame(ctk.CTkFrame):
     def make_choice(self):
         """Make choice button"""
         choice = self.symptom_options_menu.get()
-        if choice != self.parent.translator.dictionary['opt']:
+        symptom_id = self.get_symptom_id_by_name_and_type()
+        db = SymptomsDB()
+        if choice != self.parent.translator.dictionary['opt'] and symptom_id is not None:
             if choice == self.parent.translator.dictionary['edit_sympt']:
                 print("edit")
+                print(symptom_id)
             elif choice == self.parent.translator.dictionary['delete_sympt']:
-                print("delete")
+                try:
+                    db.delete_symptom_by_id(symptom_id)
+                    self.parent.show_symptoms_list_page()
+                except Exception as e:
+                    print("Error: ", e)
         else:
             print("MAKE A CHOICE")
 
 
-    def delete_symptom(self):
-        pass
+    def get_symptom_id_by_name_and_type(self):
+        db = SymptomsDB()
+        try:
+            data = self.listbox.get().split(":")
+            name = data[0].strip()
+            sympt_type = data[1].strip()
+            sympt_id = db.get_sympt_id_by_name_and_type(name, sympt_type)
+            return sympt_id[0][0]
+        except Exception as e:
+            print("Error: ", e)

@@ -47,6 +47,34 @@ class SymptomsDB:
             conn.close()
 
 
+    def get_sympt_id_by_name_and_type(self, name, sympt_type):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("SELECT id FROM symptoms WHERE symptom = ? AND track_type = ?", (name, sympt_type))
+            sympt_id = cursor.fetchall()
+            return sympt_id
+        except IntegrityError:
+            print("Symptom already exists")
+        except OperationalError:
+            print("Database error")
+        finally:
+            conn.close()
+
+
+    def delete_symptom_by_id(self, symptom_id):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("DELETE FROM symptoms WHERE id = ?", (symptom_id, ))
+            conn.commit()
+        except IntegrityError:
+            print("Symptom already exists")
+        except OperationalError:
+            print("Database error")
+        finally:
+            conn.close()
+
     def check_if_symptoms(self):
         """Check if symptoms exist in the database"""
         conn = self.get_connection()
