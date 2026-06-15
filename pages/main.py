@@ -98,6 +98,7 @@ class App(ctk.CTk):
     def show_settings(self):
         """Show settings page and hide menu page"""
         self.hide_menu()
+        self.hide_symptoms_list_page()
         self.settings_page.pack(padx=15, pady=15, fill="both", expand=True)
 
 
@@ -165,6 +166,7 @@ class App(ctk.CTk):
 
 
     def show_symptoms_list_page(self):
+        self.refresh_screen()
         self.settings_page.pack_forget()
         self.symptom_list_page.pack(padx=15, pady=15, fill="both", expand=True)
 

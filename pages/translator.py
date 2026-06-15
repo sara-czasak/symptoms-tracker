@@ -9,6 +9,7 @@ langs = [
             "view_all_title": "~ ALL LOGS ~",
             "view_details": "~ LOG DETAILS ~",
             "edit_log_title": "~ EDIT LOG ~",
+            "sympt_list_title": "~ SYMPTOMS ~",
 
             # MENU WIDGETS
             "add_log": "NEW LOG",
