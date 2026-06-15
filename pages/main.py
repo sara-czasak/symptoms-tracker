@@ -9,6 +9,7 @@ from view_logs_page import ViewLogsFrame
 from edit_entry_page import EditLogFrame
 from symptom_list_page import SymptomListFrame
 from edit_symptom_page import EditSymptomFrame
+from export_brain import DataManager
 from PIL import Image
 
 
@@ -50,6 +51,9 @@ class App(ctk.CTk):
         self.edit_log_page = EditLogFrame(self)
         self.symptom_list_page = SymptomListFrame(self)
         self.edit_symptoms_page = EditSymptomFrame(self)
+
+        self.data_manager = DataManager()
+        self.data_manager.create_dir_if_not_exists()
 
         # CHECK IF BUTTONS SHOULD BE ENABLED
         self.menu_page.update_button_states()

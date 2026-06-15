@@ -46,6 +46,8 @@ class SettingsFrame(ctk.CTkFrame):
         )
         self.back_to_menu_btn.pack(padx=5, pady=35, side="bottom")
 
+
+        # EXPORT COPIES THE DIR WITH THE USER DATA FILES (DIARY WORD FILE AND EXCEL SYMPTOM FILE)
         self.export_btn = ctk.CTkButton(
             self,
             text=self.parent.translator.dictionary["export_btn"],
