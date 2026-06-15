@@ -1,3 +1,4 @@
+from tkinter import filedialog
 from symptoms_db import SymptomsDB
 import os
 from docx import Document
@@ -8,21 +9,21 @@ import openpyxl
 class DataManager:
     """Manage gathering data and saving to excel and word"""
     def __init__(self):
-        self.dir_path = os.path.abspath("./user_data")
-        self.diary_path = os.path.abspath(os.path.join(self.dir_path, 'diary.docx'))
-        self.symptom_path = os.path.abspath(os.path.join(self.dir_path, 'symptoms.xlsx'))
+        self.dir_path = None
+        self.diary_path = None
+        self.symptom_path = None
 
         self.log_data = {}
         self.log_detail_data = {}
 
 
     # CHANGE THIS TO GET DIR PATH FROM USER
-    def create_dir_if_not_exists(self):
-        """Check if directory exists and if not, create it"""
-        if os.path.isdir("./user_data"):
-            pass
-        else:
-            os.mkdir(self.dir_path)
+    def create_export_dir(self):
+        """Get export location from user"""
+        self.dir_path = filedialog.asksaveasfilename()
+        os.mkdir(self.dir_path)
+        self.diary_path = os.path.abspath(os.path.join(self.dir_path, 'diary.docx'))
+        self.symptom_path = os.path.abspath(os.path.join(self.dir_path, 'symptoms.xlsx'))
 
 
     def get_current_data_to_save(self):

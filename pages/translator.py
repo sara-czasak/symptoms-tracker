@@ -26,6 +26,10 @@ langs = [
             "lang_btn": "LANGUAGES",
             "theme_btn": "THEMES",
             "see_symptoms": "VIEW SYMPTOMS",
+            "saved_title": "DATA SAVED",
+            "saved_message": "Your data was successfully saved",
+            "failed_save_title": "SOMETHING WENT WRONG...",
+            "failed_save_message": "Your data didn't save. Please try again.",
 
             # ADD SYMPTOM WIDGETS
             "add_symptom_name": "Symptom name:",

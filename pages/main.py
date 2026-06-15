@@ -42,7 +42,6 @@ class App(ctk.CTk):
         self.label_font = ("Helvetica", 15)
 
         self.data_manager = DataManager()
-        self.data_manager.create_dir_if_not_exists()
 
         # PAGES
         self.menu_page = MenuFrame(self)

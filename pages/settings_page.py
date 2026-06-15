@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from CTkMessagebox import CTkMessagebox
 
 
 class SettingsFrame(ctk.CTkFrame):
@@ -13,7 +14,6 @@ class SettingsFrame(ctk.CTkFrame):
         self.export_btn = None
         self.lang_btn = None
         self.theme_btn = None
-
 
         # BUILD PAGE
         self.layout()
@@ -70,8 +70,18 @@ class SettingsFrame(ctk.CTkFrame):
 
 
     def export_data(self):
-        self.parent.data_manager.get_current_data_to_save()
-        print("DATA SAVED")
+        try:
+            self.parent.data_manager.create_export_dir()
+            self.parent.data_manager.get_current_data_to_save()
+            CTkMessagebox(
+                title=self.parent.translator.dictionary["saved_title"],
+                message=self.parent.translator.dictionary["saved_message"],
+            )
+        except Exception as e:
+            CTkMessagebox(
+                title=self.parent.translator.dictionary["failed_save_title"],
+                message=self.parent.translator.dictionary["failed_save_message"],
+            )
 
 
 
