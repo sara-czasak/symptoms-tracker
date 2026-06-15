@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from symptoms_db import SymptomsDB
+from CTkListbox import *
 
 
 class SymptomListFrame(ctk.CTkFrame):
@@ -10,9 +11,17 @@ class SymptomListFrame(ctk.CTkFrame):
         # WIDGETS
         self.page_title = None
         self.back_to_settings_btn = None
+        self.symptom_options_menu = None
+        self.select_option_btn = None
+        self.listbox = None
+        self.frm = None
 
         # DATA
         self.symptoms_dict = {}
+        self.options = [
+            self.parent.translator.dictionary['edit_sympt'],
+            self.parent.translator.dictionary['delete_sympt'],
+        ]
 
         self.layout()
 
@@ -26,7 +35,7 @@ class SymptomListFrame(ctk.CTkFrame):
             text=self.parent.translator.dictionary["sympt_list_title"],
             font=self.parent.title_font,
         )
-        self.page_title.pack(padx=5, pady=40)
+        self.page_title.pack(padx=5, pady=15)
 
         self.back_to_settings_btn = ctk.CTkButton(
             self,
@@ -37,6 +46,29 @@ class SymptomListFrame(ctk.CTkFrame):
             width=50,
         )
         self.back_to_settings_btn.pack(padx=5, pady=35, side="bottom")
+
+        self.frm = ctk.CTkFrame(
+            self
+        )
+        self.frm.pack(padx=5, pady=5, expand=True, fill="both")
+
+        self.symptom_options_menu = ctk.CTkOptionMenu(
+            self.frm,
+            values=self.options,
+        )
+        self.symptom_options_menu.set(self.parent.translator.dictionary['opt'])
+        self.symptom_options_menu.grid(row=0, column=0)
+
+        self.listbox = CTkListbox(
+            self,
+            height=170,
+        )
+        self.listbox.pack(padx=5, pady=5, fill="both", expand=True)
+
+        for k, v in self.symptoms_dict.items():
+            print("k: ", k)
+            print("v: ", v)
+            self.listbox.insert("end", f"{k.title()}: {v}")
 
 
     def get_symptoms(self):

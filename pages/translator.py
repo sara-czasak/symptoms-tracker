@@ -50,6 +50,10 @@ langs = [
 
             # EDIT LOG DETAILS
             "save_changes": "SAVE CHANGES",
+
+            # ALL SYMPTOMS LIST
+            "edit_sympt": "EDIT SYMPTOM",
+            "delete_sympt": "DELETE SYMPTOM",
         }
     }
 ]
