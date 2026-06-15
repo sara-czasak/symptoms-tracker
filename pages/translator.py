@@ -10,6 +10,7 @@ langs = [
             "view_details": "~ LOG DETAILS ~",
             "edit_log_title": "~ EDIT LOG ~",
             "sympt_list_title": "~ SYMPTOMS ~",
+            "edit_symptom_title": "~ EDIT SYMPTOM ~",
 
             # MENU WIDGETS
             "add_log": "NEW LOG",
@@ -54,6 +55,9 @@ langs = [
             # ALL SYMPTOMS LIST
             "edit_sympt": "EDIT SYMPTOM",
             "delete_sympt": "DELETE SYMPTOM",
+
+            # EDIT SYMPTOMS
+            "save_edit_sympt": "SAVE CHANGES",
         }
     }
 ]

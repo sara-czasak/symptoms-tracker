@@ -96,8 +96,8 @@ class SymptomListFrame(ctk.CTkFrame):
         db = SymptomsDB()
         if choice != self.parent.translator.dictionary['opt'] and symptom_id is not None:
             if choice == self.parent.translator.dictionary['edit_sympt']:
-                print("edit")
-                print(symptom_id)
+                self.parent.edit_symptoms_page.sympt_id = symptom_id
+                self.parent.show_edit_symptoms_page()
             elif choice == self.parent.translator.dictionary['delete_sympt']:
                 try:
                     db.delete_symptom_by_id(symptom_id)
