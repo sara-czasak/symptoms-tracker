@@ -12,6 +12,7 @@ from symptom_list_page import SymptomListFrame
 from edit_symptom_page import EditSymptomFrame
 from lang_page import LangFrame
 from themes_page import ThemeFrame
+from about_page import AboutFrame
 from export_brain import DataManager
 from PIL import Image
 
@@ -61,6 +62,7 @@ class App(ctk.CTk):
         self.edit_symptoms_page = EditSymptomFrame(self)
         self.lang_page = LangFrame(self)
         self.themes_page = ThemeFrame(self)
+        self.about_page = AboutFrame(self)
 
         # CHECK IF BUTTONS SHOULD BE ENABLED
         self.menu_page.update_button_states()
@@ -115,11 +117,15 @@ class App(ctk.CTk):
         self.themes_page.destroy()
         self.themes_page = ThemeFrame(self)
 
+        self.about_page.destroy()
+        self.about_page = AboutFrame(self)
+
 
     def show_menu(self):
         """Show menu page and hide other pages"""
         self.hide_settings()
         self.hide_add_symptom()
+        self.hide_about_page()
         self.menu_page.update_button_states()
         self.menu_page.pack(padx=15, pady=15, fill="both", expand=True)
 
@@ -240,6 +246,15 @@ class App(ctk.CTk):
     def hide_theme_page(self):
         self.refresh_screen()
         self.themes_page.pack_forget()
+
+
+    def show_about_page(self):
+        self.menu_page.pack_forget()
+        self.about_page.pack(padx=15, pady=15, fill="both", expand=True)
+
+
+    def hide_about_page(self):
+        self.about_page.pack_forget()
 
 
 

@@ -39,12 +39,12 @@ class MenuFrame(ctk.CTkFrame):
         )
         self.add_log_btn.pack(padx=5, pady=5, fill="both")
 
-        self.analysis_btn = ctk.CTkButton(
-            self,
-            text=self.parent.translator.dictionary["analysis_btn"],
-            font=self.parent.button_font,
-        )
-        self.analysis_btn.pack(padx=5, pady=5, fill="both")
+        # self.analysis_btn = ctk.CTkButton(
+        #     self,
+        #     text=self.parent.translator.dictionary["analysis_btn"],
+        #     font=self.parent.button_font,
+        # )
+        # self.analysis_btn.pack(padx=5, pady=5, fill="both")
 
         self.view_entries_btn = ctk.CTkButton(
             self,
@@ -74,6 +74,7 @@ class MenuFrame(ctk.CTkFrame):
             self,
             text=self.parent.translator.dictionary["about_btn"],
             font=self.parent.button_font,
+            command=self.parent.show_about_page,
         )
         self.about_btn.pack(padx=5, pady=5, fill="both")
 
@@ -100,8 +101,8 @@ class MenuFrame(ctk.CTkFrame):
             self.add_log_btn.configure(state="disabled")
 
         if self.parent.has_logs:
-            self.analysis_btn.configure(state="normal")
+            # self.analysis_btn.configure(state="normal")
             self.view_entries_btn.configure(state="normal")
         else:
-            self.analysis_btn.configure(state="disabled")
+            # self.analysis_btn.configure(state="disabled")
             self.view_entries_btn.configure(state="disabled")
