@@ -16,9 +16,9 @@ class ThemeFrame(ctk.CTkFrame):
 
         # DATA
         self.available_themes = [
-            "theme1",
-            "theme2",
-            "theme3"
+            "green",
+            "blue",
+            "purple"
         ]
 
         self.layout()

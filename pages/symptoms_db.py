@@ -292,7 +292,7 @@ class SymptomsDB:
         conn = self.get_connection()
         cursor = conn.cursor()
         try:
-            cursor.execute("INSERT INTO user_preferences (language, theme) VALUES (?, ?)", ("English", "theme1"))
+            cursor.execute("INSERT INTO user_preferences (language, theme) VALUES (?, ?)", ("English", "purple"))
             conn.commit()
         except IntegrityError:
             print("IntegrityError")
