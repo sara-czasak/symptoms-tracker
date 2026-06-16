@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from menu_page import MenuFrame
+from pages.symptoms_db import SymptomsDB
 from view_entry_page import ViewEntryFrame
 from settings_page import SettingsFrame
 from translator import Translator
@@ -26,21 +27,24 @@ class App(ctk.CTk):
         # FLAGS
         self.has_symptoms = False
         self.has_logs = False
+        self.pref_set = False
 
         # HELPERS
         self.translator = Translator()
-        self.translator.set_lang('English')
+        self.theme = None
+
 
         # ICONS
         self.back_img = ctk.CTkImage(light_image=Image.open(r'img/go_back.png'))
 
         # THEME AND FONT
-        self.theme = ctk.set_appearance_mode('light')
         self.title_font = ("Helvetica", 25)
         self.button_font = ("Helvetica", 15)
         self.hint_font = ("Helvetica", 12)
         self.back_btn_font = ("Helvetica", 25)
         self.label_font = ("Helvetica", 15)
+
+        self.set_preferences()
 
         self.data_manager = DataManager()
 
@@ -61,6 +65,20 @@ class App(ctk.CTk):
 
         # SHOW MENU PAGE ON START
         self.show_menu()
+
+
+    def set_preferences(self):
+        db = SymptomsDB()
+        try:
+            if len(db.get_user_preferences()) == 0:
+                db.save_initial_preferences()
+            index, lang, theme = db.get_user_preferences()[0]
+            print(lang)
+            print(theme)
+            self.translator.set_lang(lang)
+            self.theme = ctk.set_default_color_theme(f'./themes/{theme}.json')
+        except Exception as e:
+            print("Error: ", e)
 
 
     def refresh_screen(self):

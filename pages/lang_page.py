@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from symptoms_db import SymptomsDB
 
 
 class LangFrame(ctk.CTkFrame):
@@ -53,5 +54,10 @@ class LangFrame(ctk.CTkFrame):
 
 
     def get_lang_and_back_to_settings(self, lang):
+        db = SymptomsDB()
+        try:
+            db.update_lang(lang)
+        except Exception as e:
+            print("Error: ", e)
         self.parent.translator.set_lang(lang)
         self.parent.show_settings()

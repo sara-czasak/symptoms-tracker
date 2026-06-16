@@ -287,6 +287,50 @@ class SymptomsDB:
             conn.close()
 
 
+    def save_initial_preferences(self):
+        """Save initial user preferences"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("INSERT INTO user_preferences (language, theme) VALUES (?, ?)", ("English", "theme1"))
+            conn.commit()
+        except IntegrityError:
+            print("IntegrityError")
+        except OperationalError:
+            print("Database error")
+        finally:
+            conn.close()
+
+
+    def get_user_preferences(self):
+        """Get preferences for user"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("SELECT * FROM user_preferences WHERE id = ?", (1,))
+            preferences = cursor.fetchall()
+            return preferences
+        except IntegrityError:
+            print("IntegrityError")
+        except OperationalError:
+            print("Database error")
+        finally:
+            conn.close()
+
+
+    def update_lang(self, new_lang):
+        """Update language preferences"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("UPDATE user_preferences SET language = ? WHERE id = ?", (new_lang, 1))
+            conn.commit()
+        except IntegrityError:
+            print("IntegrityError")
+        except OperationalError:
+            print("Database error")
+        finally:
+            conn.close()
 
 
 
