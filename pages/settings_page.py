@@ -66,6 +66,7 @@ class SettingsFrame(ctk.CTkFrame):
             self,
             text=self.parent.translator.dictionary["theme_btn"],
             font=self.parent.button_font,
+            command=self.parent.show_theme_page,
         )
         self.theme_btn.pack(padx=5, pady=5, fill="both")
 

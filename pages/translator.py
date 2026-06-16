@@ -12,6 +12,7 @@ langs = [
             "sympt_list_title": "~ SYMPTOMS ~",
             "edit_symptom_title": "~ EDIT SYMPTOM ~",
             "lang_title": "~ CHOOSE LANGUAGE ~",
+            "theme_title": "~ CHOOSE THEME ~",
 
             # MESSAGE BOXES
             "failed_save_title": "SOMETHING WENT WRONG...",
@@ -80,6 +81,7 @@ langs = [
             "sympt_list_title": "~ PL ~",
             "edit_symptom_title": "~ PL ~",
             "lang_title": "~ PL ~",
+            "theme_title": "~ PL ~",
 
             # MESSAGE BOXES
             "failed_save_title": "PL",

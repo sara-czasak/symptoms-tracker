@@ -15,9 +15,9 @@
   "CTkButton": {
     "corner_radius": 6,
     "border_width": 2,
-    "fg_color": "#2A9D8F",
-    "hover_color": "#8BA3B6",
-    "border_color": "#38e0cc",
+    "fg_color": "#2a569d",
+    "hover_color": "#8ba9b6",
+    "border_color": "#8bb6a9",
     "text_color": "#1E1E1E",
     "text_color_disabled": ["gray74", "gray60"]
   },
@@ -30,15 +30,15 @@
     "corner_radius": 6,
     "border_width": 2,
     "fg_color": "#F8F9FA",
-    "border_color": "#8BA3B6",
+    "border_color": "#8bb6a9",
     "text_color":"#1E1E1E",
     "placeholder_text_color": ["gray52", "gray62"]
   },
   "CTkCheckBox": {
     "corner_radius": 6,
     "border_width": 2,
-    "fg_color": "#2A9D8F",
-    "border_color": "#38e0cc",
+    "fg_color": "#2a569d",
+    "border_color": "#8bb6a9",
     "hover_color": "#8BA3B6",
     "checkmark_color": "#38e0cc",
     "text_color": "#1E1E1E",
@@ -124,7 +124,7 @@
     "fg_color": "#F8F9FA",
     "border_color": "#8BA3B6",
     "text_color":"#1E1E1E",
-    "scrollbar_button_color": "#38e0cc",
+    "scrollbar_button_color": "#385fe0",
     "scrollbar_button_hover_color": "#2A9D8F"
   },
   "CTkScrollableFrame": {

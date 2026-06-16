@@ -11,6 +11,7 @@ from edit_entry_page import EditLogFrame
 from symptom_list_page import SymptomListFrame
 from edit_symptom_page import EditSymptomFrame
 from lang_page import LangFrame
+from themes_page import ThemeFrame
 from export_brain import DataManager
 from PIL import Image
 
@@ -37,7 +38,7 @@ class App(ctk.CTk):
         # ICONS
         self.back_img = ctk.CTkImage(light_image=Image.open(r'img/go_back.png'))
 
-        # THEME AND FONT
+        # FONTS
         self.title_font = ("Helvetica", 25)
         self.button_font = ("Helvetica", 15)
         self.hint_font = ("Helvetica", 12)
@@ -59,6 +60,7 @@ class App(ctk.CTk):
         self.symptom_list_page = SymptomListFrame(self)
         self.edit_symptoms_page = EditSymptomFrame(self)
         self.lang_page = LangFrame(self)
+        self.themes_page = ThemeFrame(self)
 
         # CHECK IF BUTTONS SHOULD BE ENABLED
         self.menu_page.update_button_states()
@@ -73,8 +75,6 @@ class App(ctk.CTk):
             if len(db.get_user_preferences()) == 0:
                 db.save_initial_preferences()
             index, lang, theme = db.get_user_preferences()[0]
-            print(lang)
-            print(theme)
             self.translator.set_lang(lang)
             self.theme = ctk.set_default_color_theme(f'./themes/{theme}.json')
         except Exception as e:
@@ -111,6 +111,9 @@ class App(ctk.CTk):
 
         self.lang_page.destroy()
         self.lang_page = LangFrame(self)
+
+        self.themes_page.destroy()
+        self.themes_page = ThemeFrame(self)
 
 
     def show_menu(self):
@@ -227,6 +230,16 @@ class App(ctk.CTk):
     def hide_lang_page(self):
         self.refresh_screen()
         self.lang_page.pack_forget()
+
+
+    def show_theme_page(self):
+        self.hide_settings()
+        self.themes_page.pack(padx=15, pady=15, fill="both", expand=True)
+
+
+    def hide_theme_page(self):
+        self.refresh_screen()
+        self.themes_page.pack_forget()
 
 
 

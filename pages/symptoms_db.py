@@ -333,6 +333,20 @@ class SymptomsDB:
             conn.close()
 
 
+    def update_theme(self, new_theme):
+        """Update theme preferences"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("UPDATE user_preferences SET theme = ? WHERE id = ?", (new_theme, 1))
+            conn.commit()
+        except IntegrityError:
+            print("IntegrityError")
+        except OperationalError:
+            print("Database error")
+        finally:
+            conn.close()
+
 
 
 
