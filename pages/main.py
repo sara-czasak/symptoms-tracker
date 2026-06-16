@@ -9,6 +9,7 @@ from view_logs_page import ViewLogsFrame
 from edit_entry_page import EditLogFrame
 from symptom_list_page import SymptomListFrame
 from edit_symptom_page import EditSymptomFrame
+from lang_page import LangFrame
 from export_brain import DataManager
 from PIL import Image
 
@@ -53,6 +54,7 @@ class App(ctk.CTk):
         self.edit_log_page = EditLogFrame(self)
         self.symptom_list_page = SymptomListFrame(self)
         self.edit_symptoms_page = EditSymptomFrame(self)
+        self.lang_page = LangFrame(self)
 
         # CHECK IF BUTTONS SHOULD BE ENABLED
         self.menu_page.update_button_states()
@@ -89,6 +91,9 @@ class App(ctk.CTk):
         self.edit_symptoms_page.destroy()
         self.edit_symptoms_page = EditSymptomFrame(self)
 
+        self.lang_page.destroy()
+        self.lang_page = LangFrame(self)
+
 
     def show_menu(self):
         """Show menu page and hide other pages"""
@@ -106,6 +111,7 @@ class App(ctk.CTk):
     def show_settings(self):
         """Show settings page and hide menu page"""
         self.hide_menu()
+        self.hide_lang_page()
         self.hide_symptoms_list_page()
         self.settings_page.pack(padx=15, pady=15, fill="both", expand=True)
 
@@ -193,6 +199,16 @@ class App(ctk.CTk):
         self.refresh_screen()
         self.edit_symptoms_page.pack_forget()
         self.show_symptoms_list_page()
+
+
+    def show_lang_page(self):
+        self.hide_settings()
+        self.lang_page.pack(padx=15, pady=15, fill="both", expand=True)
+
+
+    def hide_lang_page(self):
+        self.refresh_screen()
+        self.lang_page.pack_forget()
 
 
 
