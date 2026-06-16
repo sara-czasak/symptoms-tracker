@@ -18,7 +18,8 @@ class ThemeFrame(ctk.CTkFrame):
         self.available_themes = [
             "green",
             "blue",
-            "purple"
+            "purple",
+            'red'
         ]
 
         self.layout()
