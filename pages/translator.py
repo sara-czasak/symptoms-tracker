@@ -72,71 +72,71 @@ langs = [
     {
         "Polski": {
             # PAGE TITLES
-            "menu_page_title": "~ PL ~",
-            "settings_title": "~ PL ~",
-            "add_symptom_title": "~ PL ~",
-            "add_log_title": "~ PL ~",
-            "view_all_title": "~ PL ~",
-            "view_details": "~ PL ~",
-            "edit_log_title": "~ PL ~",
-            "sympt_list_title": "~ PL ~",
-            "edit_symptom_title": "~ PL ~",
-            "lang_title": "~ PL ~",
-            "theme_title": "~ PL ~",
-            "about_title": "~ PL ~",
+            "menu_page_title": "~ DZIENNIK OBJAWÓW ~",
+            "settings_title": "~ USTAWIENIA ~",
+            "add_symptom_title": "~ DODAJ OBJAW ~",
+            "add_log_title": "~ DODAJ WPIS ~",
+            "view_all_title": "~ ZOBACZ WPISY ~",
+            "view_details": "~ ZOBACZ SZCZEGUŁY ~",
+            "edit_log_title": "~ EDYTUJ WPIS ~",
+            "sympt_list_title": "~ LISTA OBJAWÓW ~",
+            "edit_symptom_title": "~ EDYTUJ OBJAW ~",
+            "lang_title": "~ WYBIERZ JĘZYK ~",
+            "theme_title": "~ WYBIERZ MOTYW ~",
+            "about_title": "~ O APLIKACJI ~",
 
             # MESSAGE BOXES
-            "failed_save_title": "PL",
-            "failed_save_message": "PL",
-            "saved_title": "PL",
-            "saved_message": "PL",
+            "failed_save_title": "Coś poszło nie tak",
+            "failed_save_message": "Nie udało się pobrać danych",
+            "saved_title": "Udało się",
+            "saved_message": "Twoje dane zostały zapisane",
 
             # MENU WIDGETS
-            "add_log": "PL",
-            "analysis_btn": "PL",
-            "view_entries_btn": "PL",
-            "settings_btn": "PL",
-            "about_btn": "PL",
-            "add_symptoms_btn": "PL",
-            "exit_btn": "PL",
+            "add_log": "DODAJ WPIS",
+            "analysis_btn": "ANALIZA",
+            "view_entries_btn": "ZOBACZ WSZYSTKIE WPISY",
+            "settings_btn": "USTAWIENIA",
+            "about_btn": "O APLIKACJI",
+            "add_symptoms_btn": "DODAJ OBJAW",
+            "exit_btn": "OPUŚĆ APLIKACJE",
 
             # SETTINGS WIDGETS
-            "export_btn": "PL",
-            "lang_btn": "PL",
-            "theme_btn": "PL",
-            "see_symptoms": "PL",
+            "export_btn": "ZAPISZ DANE",
+            "lang_btn": "JĘZYKI",
+            "theme_btn": "MOTYWY",
+            "see_symptoms": "ZOBACZ OBJAWY",
 
             # ADD SYMPTOM WIDGETS
-            "add_symptom_name": "PL",
-            "scale": "PL",
-            "yes_no": "PL",
-            "text": "PL",
-            "choose": "PL",
-            "type": "PL",
-            "add_symptom": "PL",
+            "add_symptom_name": "DODAJ NAZWĘ OBJAWU",
+            "scale": "NA SKALI OD 0 DO 5",
+            "yes_no": "OBECNY/NIEOBECNY",
+            "text": "TEKST",
+            "choose": "WYBJERZ OPCJE",
+            "type": "RODZAJ OBJAWU",
+            "add_symptom": "DODAJ OBJAW",
 
             # ADD LOG WIDGETS
-            "save": "PL",
-            "add_log_date": "PL",
-            "add_log_notes": "PL",
-            "yes": "PL",
+            "save": "ZAPISZ",
+            "add_log_date": "Data (RRRR-MM-DD)",
+            "add_log_notes": "Notatki",
+            "yes": "TAK",
 
             # VIEW ALL LOGS
-            "view": "PL",
-            "edit": "PL",
-            "delete": "PL",
-            "opt": "PL",
-            "confirm": "PL",
+            "view": "ZOBACZ",
+            "edit": "EDYTUJ",
+            "delete": "USUŃ",
+            "opt": "OPCJE",
+            "confirm": "ZATWIERDŹ WYBÓR",
 
             # EDIT LOG DETAILS
-            "save_changes": "PL",
+            "save_changes": "ZAPISZ ZMIANY",
 
             # ALL SYMPTOMS LIST
-            "edit_sympt": "PL",
-            "delete_sympt": "PL",
+            "edit_sympt": "EDYTUJ",
+            "delete_sympt": "USUŃ",
 
             # EDIT SYMPTOMS
-            "save_edit_sympt": "PL",
+            "save_edit_sympt": "ZAPISZ ZMIANY",
         }
     }
 ]
