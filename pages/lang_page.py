@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from symptoms_db import SymptomsDB
+from CTkMessagebox import CTkMessagebox
 
 
 class LangFrame(ctk.CTkFrame):
@@ -57,7 +58,17 @@ class LangFrame(ctk.CTkFrame):
         db = SymptomsDB()
         try:
             db.update_lang(lang)
+            CTkMessagebox(
+                self,
+                title=self.parent.translator.dictionary["lang_message_title"],
+                message=self.parent.translator.dictionary["lang_message"] + lang,
+            )
         except Exception as e:
             print("Error: ", e)
+            CTkMessagebox(
+                self,
+                title=self.parent.translator.dictionary["failed_save_title"],
+                message=self.parent.translator.dictionary["lang_message_fail"],
+            )
         self.parent.translator.set_lang(lang)
         self.parent.show_settings()

@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from symptoms_db import SymptomsDB
+from CTkMessagebox import CTkMessagebox
 
 
 class ThemeFrame(ctk.CTkFrame):
@@ -59,7 +60,17 @@ class ThemeFrame(ctk.CTkFrame):
         db = SymptomsDB()
         try:
             db.update_theme(theme)
+            CTkMessagebox(
+                self,
+                title=self.parent.translator.dictionary["theme_title_success"],
+                message=self.parent.translator.dictionary["theme_message_success"],
+            )
         except Exception as e:
             print("Error: ", e)
+            CTkMessagebox(
+                self,
+                title=self.parent.translator.dictionary["failed_save_title"],
+                message=self.parent.translator.dictionary["theme_message_fail"],
+            )
         self.parent.theme = ctk.set_default_color_theme(f'./themes/{theme}.json')
         self.parent.show_settings()

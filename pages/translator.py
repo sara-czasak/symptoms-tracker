@@ -20,6 +20,12 @@ langs = [
             "failed_save_message": "Your data didn't save. Please try again.",
             "saved_title": "DATA SAVED",
             "saved_message": "Your data was successfully saved",
+            "lang_message_title": "Language changed successfully!",
+            "lang_message": "Language changed to: ",
+            "lang_message_fail": "Language change failed. Please try again.",
+            "theme_title_success": "Success!",
+            "theme_message_success": "Theme changed successfully!",
+            "theme_message_fail": "Couldn't change theme. Please try again.",
 
             # MENU WIDGETS
             "add_log": "NEW LOG",
@@ -90,6 +96,12 @@ langs = [
             "failed_save_message": "Nie udało się pobrać danych",
             "saved_title": "Udało się",
             "saved_message": "Twoje dane zostały zapisane",
+            "lang_message_title": "Udało się zmienić język!",
+            "lang_message": "Język zmieniony na: ",
+            "lang_message_fail": "Nie udało się zmienić języka. Sprubuj ponownie.",
+            "theme_title_success": "Udało się!",
+            "theme_message_success": "Motyw został zmieniony!",
+            "theme_message_fail": "Nie udało się zmienić motywu. Sprubuj ponownie",
 
             # MENU WIDGETS
             "add_log": "DODAJ WPIS",
