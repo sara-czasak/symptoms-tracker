@@ -165,7 +165,6 @@ class ViewLogsFrame(ctk.CTkFrame):
                     message=self.parent.translator.dictionary["delete_message_fail"],
                 )
         else:
-            print("MAKE A SELECTION")
             CTkMessagebox(
                 self,
                 title=self.parent.translator.dictionary["selection_title"],

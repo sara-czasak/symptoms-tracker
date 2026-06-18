@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from symptoms_db import SymptomsDB
 from CTkListbox import *
+from CTkMessagebox import CTkMessagebox
 
 
 class SymptomListFrame(ctk.CTkFrame):
@@ -99,13 +100,36 @@ class SymptomListFrame(ctk.CTkFrame):
                 self.parent.edit_symptoms_page.sympt_id = symptom_id
                 self.parent.show_edit_symptoms_page()
             elif choice == self.parent.translator.dictionary['delete_sympt']:
-                try:
-                    db.delete_symptom_by_id(symptom_id)
-                    self.parent.show_symptoms_list_page()
-                except Exception as e:
-                    print("Error: ", e)
+                delete = CTkMessagebox(
+                    title=self.parent.translator.dictionary["delete_question"],
+                    message=self.parent.translator.dictionary["delete_message"],
+                    icon="question",
+                    option_1=self.parent.translator.dictionary["Cancel"],
+                    option_2=self.parent.translator.dictionary["No"],
+                    option_3=self.parent.translator.dictionary["Yes"]
+                )
+                if delete.get() == self.parent.translator.dictionary["Yes"]:
+                    try:
+                        db.delete_symptom_by_id(symptom_id)
+                        self.parent.show_symptoms_list_page()
+                        CTkMessagebox(
+                            self,
+                            title=self.parent.translator.dictionary["delete_sympt_title_success"],
+                            message=self.parent.translator.dictionary["delete_sympt_message_success"],
+                        )
+                    except Exception as e:
+                        print("Error: ", e)
+                        CTkMessagebox(
+                            self,
+                            title=self.parent.translator.dictionary["failed_save_title"],
+                            message=self.parent.translator.dictionary["delete_sympt_message_fail"],
+                        )
         else:
-            print("MAKE A CHOICE")
+            CTkMessagebox(
+                self,
+                title=self.parent.translator.dictionary["selection_title"],
+                message=self.parent.translator.dictionary["selection_message"],
+            )
 
 
     def get_symptom_id_by_name_and_type(self):

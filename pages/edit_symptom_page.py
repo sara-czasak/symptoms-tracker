@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from symptoms_db import SymptomsDB
+from CTkMessagebox import CTkMessagebox
 
 
 class EditSymptomFrame(ctk.CTkFrame):
@@ -104,8 +105,18 @@ class EditSymptomFrame(ctk.CTkFrame):
                 symptom_type = self.symptom_type_entry.get()
                 db.update_symptom(symptom_name, symptom_type, self.sympt_id)
                 self.parent.show_symptoms_list_page()
+                CTkMessagebox(
+                    self,
+                    title=self.parent.translator.dictionary["edit_title"],
+                    message=self.parent.translator.dictionary["edit_message"],
+                )
             except Exception as e:
                 print("Error: ", e)
+                CTkMessagebox(
+                    self,
+                    title=self.parent.translator.dictionary["failed_save_title"],
+                    message=self.parent.translator.dictionary["edit_error_message"],
+                )
         else:
             pass
 
@@ -117,5 +128,8 @@ class EditSymptomFrame(ctk.CTkFrame):
             data = db.get_symptom_by_id(self.sympt_id)
             self.sympt_name = data[0][1]
             self.sympt_type = data[0][2]
+
+
         except Exception as e:
             print("Error: ", e)
+

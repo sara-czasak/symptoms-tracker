@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from symptoms_db import SymptomsDB
+from CTkMessagebox import CTkMessagebox
 
 
 class EditLogFrame(ctk.CTkFrame):
@@ -283,6 +284,15 @@ class EditLogFrame(ctk.CTkFrame):
             log_id = db.get_logs_id_by_date(self.log_to_save['date'])[0]
             for k, v in self.log_details_to_save.items():
                 db.add_log_details(log_id, k.replace(":", ""), v[0], v[1])
-
+            CTkMessagebox(
+                self,
+                title=self.parent.translator.dictionary["edit_title"],
+                message=self.parent.translator.dictionary["edit_message"],
+            )
         except Exception as e:
             print("Error save data: ", e)
+            CTkMessagebox(
+                self,
+                title=self.parent.translator.dictionary["failed_save_title"],
+                message=self.parent.translator.dictionary["edit_error_message"],
+            )
