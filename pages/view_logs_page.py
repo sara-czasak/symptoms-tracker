@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from symptoms_db import SymptomsDB
 from CTkListbox import *
+from CTkMessagebox import CTkMessagebox
 
 
 class ViewLogsFrame(ctk.CTkFrame):
@@ -105,7 +106,18 @@ class ViewLogsFrame(ctk.CTkFrame):
         elif opt == self.parent.translator.dictionary["edit"]:
             self.parent.show_edit_log()
         elif opt == self.parent.translator.dictionary["delete"]:
-            self.delete_log()
+            delete = CTkMessagebox(
+                title=self.parent.translator.dictionary["delete_question"],
+                message=self.parent.translator.dictionary["delete_message"],
+                icon="question",
+                option_1=self.parent.translator.dictionary["Cancel"],
+                option_2=self.parent.translator.dictionary["No"],
+                option_3=self.parent.translator.dictionary["Yes"]
+            )
+            if delete.get() == self.parent.translator.dictionary["Yes"]:
+                self.delete_log()
+            else:
+                pass
 
 
     def view_log(self):
@@ -140,10 +152,25 @@ class ViewLogsFrame(ctk.CTkFrame):
                     self.parent.show_menu()
                 else:
                     self.parent.show_view_logs()
+                CTkMessagebox(
+                    self,
+                    title=self.parent.translator.dictionary["delete_title_success"],
+                    message=self.parent.translator.dictionary["delete_message_success"],
+                )
             except Exception as e:
                 print("Error: ", e)
+                CTkMessagebox(
+                    self,
+                    title=self.parent.translator.dictionary["failed_save_title"],
+                    message=self.parent.translator.dictionary["delete_message_fail"],
+                )
         else:
             print("MAKE A SELECTION")
+            CTkMessagebox(
+                self,
+                title=self.parent.translator.dictionary["selection_title"],
+                message=self.parent.translator.dictionary["selection_message"],
+            )
 
 
     def back_to_menu(self):

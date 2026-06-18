@@ -26,6 +26,16 @@ langs = [
             "theme_title_success": "Success!",
             "theme_message_success": "Theme changed successfully!",
             "theme_message_fail": "Couldn't change theme. Please try again.",
+            "delete_question": "Are you sure?",
+            "delete_message": "Proceed to delete log?",
+            "Cancel": "Cancel",
+            "Yes": "Yes",
+            "No": "No",
+            "delete_title_success": "Success!",
+            "delete_message_success": "Entry has been deleted",
+            "delete_message_fail": "Couldn't delete entry. Please try again.",
+            "selection_title": "No selection made.",
+            "selection_message": "Please make a selection and try again.",
 
             # MENU WIDGETS
             "add_log": "NEW LOG",
@@ -102,6 +112,16 @@ langs = [
             "theme_title_success": "Udało się!",
             "theme_message_success": "Motyw został zmieniony!",
             "theme_message_fail": "Nie udało się zmienić motywu. Sprubuj ponownie",
+            "delete_question": "Czy na pewno?",
+            "delete_message": "Czy na pewno chcesz usunąć wpis?",
+            "Cancel": "Zrezygnuj",
+            "Yes": "Tak",
+            "No": "Nie",
+            "delete_title_success": "Udało się",
+            "delete_message_success": "Wpis został usunięty",
+            "delete_message_fail": "Nie udało się usunąć wpisu. Sprubuj ponownie",
+            "selection_title": "Nie wykryto wyboru.",
+            "selection_message": "Wybierz wpis i sprubuj ponownie",
 
             # MENU WIDGETS
             "add_log": "DODAJ WPIS",
